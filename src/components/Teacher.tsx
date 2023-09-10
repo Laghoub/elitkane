@@ -5,12 +5,35 @@ import axios from "axios";
 import { Modal, Form, Button, Row, Col, Toast } from "react-bootstrap";
 
 const Teacher = () => {
+  type ClassType = {
+    matricule: string;
+    cycle: string;
+    niveau: string;
+    numero: string;
+    idClasse: string;
+  };
+
+  type TeacherType = {
+    matricule: string;
+    nom: string;
+    prenom: string;
+    dateNaissance: string;
+    lieuNaissance: string;
+    matiereEnseignee: string;
+    adresse: string;
+    ensEtat: string;
+    email: string;
+    nomUser: string;
+    mdp: string;
+  };
   const validation = "0";
   const finalValidation = "1";
   const [activeTab, setActiveTab] = useState("inscription");
   const [showToast, setShowToast] = useState(false);
-  const [teachers, setTeachers] = useState([]);
-  const [teachersValidated, setTeachersValidated] = useState([]);
+  const [teachers, setTeachers] = useState([] as TeacherType[]);
+  const [teachersValidated, setTeachersValidated] = useState(
+    [] as TeacherType[]
+  );
   const [selectedClass, setSelectedClass] = useState("");
   const [ensEtat, setensEtat] = useState(["Oui", "Non"]);
   const [matiereList, setMatiereList] = useState([
@@ -56,7 +79,7 @@ const Teacher = () => {
     }
   };
 
-  const [classesList, setClassesList] = useState([]);
+  const [classesList, setClassesList] = useState([] as ClassType[]);
   const [showEditModal, setShowEditModal] = useState(false);
   const [TeacherData, setTeacherData] = useState({
     matricule: "",
@@ -72,7 +95,7 @@ const Teacher = () => {
     mdp: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
 
     // Appliquer toUpperCase() aux champs nom et prenom
@@ -135,7 +158,7 @@ const Teacher = () => {
     fetchValidatedTeachers(finalValidation);
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
       const response = await axios.post(
@@ -188,7 +211,7 @@ const Teacher = () => {
     handleDelete(matricule);
     hideConfirmation();
   };
-  const openEditModal = (Teacher) => {
+  const openEditModal = (Teacher: any) => {
     setEditingTeacher(Teacher);
     setShowEditModal(true);
   };
@@ -196,7 +219,7 @@ const Teacher = () => {
   const handleEdit = async () => {
     try {
       await axios.patch(
-        `https://elitkane.onrender.com/api/Teacher/${editingTeacher.matricule}`,
+        `https://elitkane.onrender.com/api/teacher/${editingTeacher.matricule}`,
         editingTeacher
       );
       fetchTeachers(validation);
@@ -207,12 +230,12 @@ const Teacher = () => {
     }
   };
 
-  const AddTeacher = async (e) => {
+  const AddTeacher = async (e: any) => {
     e.preventDefault();
 
     const newUser = {
       matricule: editingTeacher.matricule,
-      role: "étudiant",
+      role: "enseignant",
       nom: editingTeacher.nom,
       email: editingTeacher.nomUser,
       mdp: editingTeacher.mdp,
@@ -235,30 +258,29 @@ const Teacher = () => {
       prenom: "",
       dateNaissance: "",
       lieuNaissance: "",
-      classe: "",
-      filiere: "",
+      matiereEnseignee: "",
       adresse: "",
-      prenomPere: "",
-      nomPreMere: "",
-      mail: "",
+      ensEtat: "",
+      email: "",
       nomUser: "",
       mdp: "",
     });
     setShowEditModal(false);
   };
-  const filteredTeachers = Teachers.filter((Teacher) => {
-    const classFilter = !selectedClass || Teacher.classe === selectedClass;
+
+  const filteredTeachersValidated = teachersValidated.filter((Teacher) => {
+    const classFilter = !selectedClass;
     const searchFilter =
       !searchTerm ||
       Teacher.nom.toLowerCase().includes(searchTerm.toLowerCase());
     return classFilter && searchFilter;
   });
 
-  const filteredTeachersValidated = TeachersValidated.filter((Teacher) => {
-    const classFilter = !selectedClass || Teacher.classe === selectedClass;
+  const filteredTeachers = teachers.filter((teacher) => {
+    const classFilter = !selectedClass;
     const searchFilter =
       !searchTerm ||
-      Teacher.nom.toLowerCase().includes(searchTerm.toLowerCase());
+      teacher.nom.toLowerCase().includes(searchTerm.toLowerCase());
     return classFilter && searchFilter;
   });
 
@@ -343,22 +365,22 @@ const Teacher = () => {
                       onChange={handleChange}
                       required
                     />
-                    <br />
                   </Form.Group>
-                  <Form.Group controlId="classe">
+                  <br />
+                  <Form.Group controlId="matiereEnseignee">
                     <Form.Control
                       as="select"
-                      name="classe"
-                      value={TeacherData.classe}
+                      name="matiereEnseignee"
+                      value={TeacherData.matiereEnseignee}
                       onChange={handleChange}
                       required
                     >
                       <option value="" disabled>
-                        Classe
+                        Matiere Enseignée
                       </option>
-                      {classesList.map((classe) => (
-                        <option key={classe.idClasse} value={classe.idClasse}>
-                          {classe.idClasse}
+                      {matiereList.map((matiere) => (
+                        <option key={matiere} value={matiere}>
+                          {matiere}
                         </option>
                       ))}
                     </Form.Control>
@@ -374,17 +396,7 @@ const Teacher = () => {
                       required
                     />
                   </Form.Group>
-                  <br />
-                  <Form.Group controlId="nomPreMere">
-                    <Form.Control
-                      type="text"
-                      name="nomPreMere"
-                      placeholder="Nom et Prénom de mere"
-                      value={TeacherData.nomPreMere}
-                      onChange={handleChange}
-                      required
-                    />
-                  </Form.Group>
+
                   <br />
                   <h5>Les informations de connexion</h5>
                   <Form.Group controlId="nomUser">
@@ -422,47 +434,36 @@ const Teacher = () => {
                       required
                     />
                   </Form.Group>
-                  <br />
 
-                  <Form.Group controlId="filiere">
+                  <br />
+                  <Form.Group controlId="email">
+                    <Form.Control
+                      type="text"
+                      name="email"
+                      placeholder="Adresse mail"
+                      value={TeacherData.email}
+                      onChange={handleChange}
+                      required
+                    />
+                  </Form.Group>
+                  <br />
+                  <Form.Group controlId="ensEtat">
                     <Form.Control
                       as="select"
-                      name="filiere"
-                      value={TeacherData.filiere}
+                      name="ensEtat"
+                      value={TeacherData.ensEtat}
                       onChange={handleChange}
                       required
                     >
                       <option value="" disabled>
-                        Filiere
+                        Enseignez-vous à l'état ?
                       </option>
-                      {filiereList.map((filiere) => (
-                        <option key={filiere} value={filiere}>
-                          {filiere}
+                      {ensEtat.map((ensetat) => (
+                        <option key={ensetat} value={ensetat}>
+                          {ensetat}
                         </option>
                       ))}
                     </Form.Control>
-                  </Form.Group>
-                  <br />
-                  <Form.Group controlId="prenomPere">
-                    <Form.Control
-                      type="text"
-                      name="prenomPere"
-                      placeholder="Prénom du pere"
-                      value={TeacherData.prenomPere}
-                      onChange={handleChange}
-                      required
-                    />
-                  </Form.Group>
-                  <br />
-                  <Form.Group controlId="mail">
-                    <Form.Control
-                      type="text"
-                      name="mail"
-                      placeholder="Adresse mail"
-                      value={TeacherData.mail}
-                      onChange={handleChange}
-                      required
-                    />
                   </Form.Group>
                   <br />
                   <h5 style={{ color: "white" }}>.</h5>
@@ -556,17 +557,17 @@ const Teacher = () => {
                       <th>Nom</th>
                       <th>Prénom</th>
                       <th>Date de Naissance</th>
-                      <th>Classe</th>
+                      <th>matiere</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredTeachers.map((Teacher, index) => (
+                    {filteredTeachers.map((Teacher: any, index: any) => (
                       <tr key={index}>
                         <td>{Teacher.matricule}</td>
                         <td>{Teacher.nom}</td>
                         <td>{Teacher.prenom}</td>
                         <td>{Teacher.dateNaissance}</td>
-                        <td>{Teacher.classe}</td>
+                        <td>{Teacher.matiereEnseignee}</td>
                         <td>
                           <button
                             className="btn btn-success"
@@ -593,7 +594,7 @@ const Teacher = () => {
               </Modal.Header>
               <Modal.Body>
                 Vous etes sur le point de supprimer l'inscription N°{" "}
-                {TeacherToDeleteId}
+                {teacherToDeleteId}
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={hideConfirmation}>
@@ -601,7 +602,7 @@ const Teacher = () => {
                 </Button>
                 <Button
                   variant="danger"
-                  onClick={() => deleteHide(TeacherToDeleteId)}
+                  onClick={() => deleteHide(teacherToDeleteId)}
                 >
                   Supprimer
                 </Button>
@@ -619,10 +620,10 @@ const Teacher = () => {
                     <Form.Label>Nom</Form.Label>
                     <Form.Control
                       type="text"
-                      value={editingStudent.nom}
+                      value={editingTeacher.nom}
                       onChange={(e) =>
-                        setEditingStudent({
-                          ...editingStudent,
+                        setEditingTeacher({
+                          ...editingTeacher,
                           nom: e.target.value,
                         })
                       }
@@ -634,10 +635,10 @@ const Teacher = () => {
                     <Form.Label>Prénom</Form.Label>
                     <Form.Control
                       type="text"
-                      value={editingStudent.prenom}
+                      value={editingTeacher.prenom}
                       onChange={(e) =>
-                        setEditingStudent({
-                          ...editingStudent,
+                        setEditingTeacher({
+                          ...editingTeacher,
                           prenom: e.target.value,
                         })
                       }
@@ -649,10 +650,10 @@ const Teacher = () => {
                     <Form.Label>Date de naissance</Form.Label>
                     <Form.Control
                       type="date"
-                      value={editingStudent.dateNaissance}
+                      value={editingTeacher.dateNaissance}
                       onChange={(e) =>
-                        setEditingStudent({
-                          ...editingStudent,
+                        setEditingTeacher({
+                          ...editingTeacher,
                           dateNaissance: e.target.value,
                         })
                       }
@@ -664,10 +665,10 @@ const Teacher = () => {
                     <Form.Label>Lieu de naissance</Form.Label>
                     <Form.Control
                       type="text"
-                      value={editingStudent.lieuNaissance}
+                      value={editingTeacher.lieuNaissance}
                       onChange={(e) =>
-                        setEditingStudent({
-                          ...editingStudent,
+                        setEditingTeacher({
+                          ...editingTeacher,
                           lieuNaissance: e.target.value,
                         })
                       }
@@ -675,50 +676,36 @@ const Teacher = () => {
                     />
                   </Form.Group>
 
-                  <Form.Group controlId="classe">
-                    <Form.Label>Classe</Form.Label>
+                  <Form.Group controlId="matiereEnseignee">
+                    <Form.Label>matiere Enseignée</Form.Label>
                     <Form.Control
                       type="text"
-                      value={editingStudent.classe}
+                      value={editingTeacher.matiereEnseignee}
                       onChange={(e) =>
-                        setEditingStudent({
-                          ...editingStudent,
-                          classe: e.target.value,
+                        setEditingTeacher({
+                          ...editingTeacher,
+                          matiereEnseignee: e.target.value,
                         })
                       }
                       required
                     />
                   </Form.Group>
 
-                  <Form.Group controlId="filiere">
-                    <Form.Label>Filiere</Form.Label>
+                  <Form.Group controlId="ensEtat">
+                    <Form.Label>Enseignant à l'état</Form.Label>
                     <Form.Control
                       type="text"
-                      value={editingStudent.filiere}
+                      value={editingTeacher.ensEtat}
                       onChange={(e) =>
-                        setEditingStudent({
-                          ...editingStudent,
-                          filiere: e.target.value,
+                        setEditingTeacher({
+                          ...editingTeacher,
+                          ensEtat: e.target.value,
                         })
                       }
                       required
                     />
                   </Form.Group>
 
-                  <Form.Group controlId="mail">
-                    <Form.Label>Mail</Form.Label>
-                    <Form.Control
-                      type="text"
-                      value={editingStudent.mail}
-                      onChange={(e) =>
-                        setEditingStudent({
-                          ...editingStudent,
-                          mail: e.target.value,
-                        })
-                      }
-                      required
-                    />
-                  </Form.Group>
                   {/* ... Autres champs ... */}
                 </Form>
               </Modal.Body>
@@ -727,7 +714,7 @@ const Teacher = () => {
                   Annuler
                 </Button>
 
-                <Button variant="primary" onClick={AddStudent}>
+                <Button variant="primary" onClick={AddTeacher}>
                   Ajouter le compte
                 </Button>
                 <Button variant="primary" onClick={handleEdit}>
@@ -783,13 +770,13 @@ const Teacher = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredStudentsValidated.map((student, index) => (
+                    {filteredTeachersValidated.map((student, index) => (
                       <tr key={index}>
                         <td>{student.matricule}</td>
                         <td>{student.nom}</td>
                         <td>{student.prenom}</td>
                         <td>{student.dateNaissance}</td>
-                        <td>{student.classe}</td>
+                        <td>{student.matiereEnseignee}</td>
                         <td>
                           <button
                             className="btn btn-success"

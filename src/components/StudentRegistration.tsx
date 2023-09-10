@@ -7,6 +7,13 @@ import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const StudentRegistration = () => {
+  type ClassType = {
+    matricule: string;
+    cycle: string;
+    niveau: string;
+    numero: string;
+    idClasse: string;
+  };
   const navigate = useNavigate();
   const [showToast, setShowToast] = useState(false);
   const [students, setStudents] = useState([]);
@@ -21,7 +28,7 @@ const StudentRegistration = () => {
     "Langues étrangeres",
   ]);
 
-  const [classesList, setClassesList] = useState([]);
+  const [classesList, setClassesList] = useState([] as ClassType[]);
   const [showEditModal, setShowEditModal] = useState(false);
   const [studentData, setStudentData] = useState({
     matricule: "",
@@ -39,7 +46,7 @@ const StudentRegistration = () => {
     mdp: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
 
     // Appliquer toUpperCase() aux champs nom et prenom
@@ -72,7 +79,7 @@ const StudentRegistration = () => {
     fetchClasses();
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
       const response = await axios.post(

@@ -50,7 +50,7 @@ const TeacherRegistration = () => {
     mdp: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
 
     // Appliquer toUpperCase() aux champs nom et prenom
@@ -67,7 +67,7 @@ const TeacherRegistration = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
       const response = await axios.post(

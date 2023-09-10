@@ -5,12 +5,37 @@ import axios from "axios";
 import { Modal, Form, Button, Row, Col, Toast } from "react-bootstrap";
 
 const Student = () => {
+  type StudentType = {
+    matricule: string;
+    nom: string;
+    prenom: string;
+    dateNaissance: string;
+    lieuNaissance: string;
+    classe: string;
+    filiere: string;
+    adresse: string;
+    prenomPere: string;
+    nomMere: string;
+    mail: string;
+    nomUser: string;
+    mdp: string;
+  };
+
+  type ClassType = {
+    matricule: string;
+    cycle: string;
+    niveau: string;
+    numero: string;
+    idClasse: string;
+  };
   const validation = "0";
   const finalValidation = "1";
   const [activeTab, setActiveTab] = useState("inscription");
   const [showToast, setShowToast] = useState(false);
-  const [students, setStudents] = useState([]);
-  const [studentsValidated, setStudentsValidated] = useState([]);
+  const [students, setStudents] = useState([] as StudentType[]);
+  const [studentsValidated, setStudentsValidated] = useState(
+    [] as StudentType[]
+  );
   const [selectedClass, setSelectedClass] = useState("");
   const [filiereList, setFiliereList] = useState([
     "Scientifique",
@@ -45,7 +70,7 @@ const Student = () => {
     }
   };
 
-  const [classesList, setClassesList] = useState([]);
+  const [classesList, setClassesList] = useState([] as ClassType[]);
   const [showEditModal, setShowEditModal] = useState(false);
   const [studentData, setStudentData] = useState({
     matricule: "",
@@ -63,7 +88,7 @@ const Student = () => {
     mdp: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
 
     // Appliquer toUpperCase() aux champs nom et prenom
@@ -126,7 +151,7 @@ const Student = () => {
     fetchValidatedStudents(finalValidation);
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
       const response = await axios.post(
@@ -181,7 +206,7 @@ const Student = () => {
     handleDelete(matricule);
     hideConfirmation();
   };
-  const openEditModal = (student) => {
+  const openEditModal = (student: any) => {
     setEditingStudent(student);
     setShowEditModal(true);
   };
@@ -200,7 +225,7 @@ const Student = () => {
     }
   };
 
-  const AddStudent = async (e) => {
+  const AddStudent = async (e: any) => {
     e.preventDefault();
 
     const newUser = {
@@ -553,7 +578,7 @@ const Student = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredStudents.map((student, index) => (
+                    {filteredStudents.map((student: any, index: any) => (
                       <tr key={index}>
                         <td>{student.matricule}</td>
                         <td>{student.nom}</td>
@@ -776,29 +801,33 @@ const Student = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredStudentsValidated.map((student, index) => (
-                      <tr key={index}>
-                        <td>{student.matricule}</td>
-                        <td>{student.nom}</td>
-                        <td>{student.prenom}</td>
-                        <td>{student.dateNaissance}</td>
-                        <td>{student.classe}</td>
-                        <td>
-                          <button
-                            className="btn btn-success"
-                            onClick={() => openEditModal(student)}
-                          >
-                            modifier
-                          </button>
-                          <button
-                            className="btn btn-danger ms-2"
-                            onClick={() => showConfirmation(student.matricule)}
-                          >
-                            Supprimer
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
+                    {filteredStudentsValidated.map(
+                      (student: any, index: any) => (
+                        <tr key={index}>
+                          <td>{student.matricule}</td>
+                          <td>{student.nom}</td>
+                          <td>{student.prenom}</td>
+                          <td>{student.dateNaissance}</td>
+                          <td>{student.classe}</td>
+                          <td>
+                            <button
+                              className="btn btn-success"
+                              onClick={() => openEditModal(student)}
+                            >
+                              modifier
+                            </button>
+                            <button
+                              className="btn btn-danger ms-2"
+                              onClick={() =>
+                                showConfirmation(student.matricule)
+                              }
+                            >
+                              Supprimer
+                            </button>
+                          </td>
+                        </tr>
+                      )
+                    )}
                   </tbody>
                 </table>
               </div>
