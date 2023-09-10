@@ -7,7 +7,7 @@ import Message from "./Message";
 const App = () => {
   return (
     <MyContextProvider>
-      <AppRouter />
+      <Login />
     </MyContextProvider>
     /*
     <Routes>
