@@ -4,11 +4,18 @@ import axios from "axios";
 import { Modal, Button, Form } from "react-bootstrap";
 
 const Class = () => {
+  type ClassType = {
+    matricule: string;
+    cycle: string;
+    niveau: string;
+    numero: string;
+    idClasse: string;
+  };
   const token = localStorage.getItem("token");
   const [cycle, setCycle] = useState("");
   const [niveau, setNiveau] = useState("");
   const [numero, setNumero] = useState("");
-  const [classes, setClasses] = useState([]);
+  const [classes, setClasses] = useState([] as ClassType[]);
   const [selectedCycle, setSelectedCycle] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -27,7 +34,7 @@ const Class = () => {
 
   const cycles = ["Primaire", "Moyen", "Scientifique", "Gestion", "Literraire"];
 
-  const AddClass = async (e) => {
+  const AddClass = async (e: any) => {
     e.preventDefault();
 
     const newClass = {
@@ -121,7 +128,7 @@ const Class = () => {
     setSuccessMessage("");
   };
 
-  const openEditModal = (classe) => {
+  const openEditModal = (classe: any) => {
     setEditingClass(classe);
     setShowEditModal(true);
   };
