@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import { useMyContext } from "./Mycontext";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import students from "../assets/students.jpeg";
 import classes from "../assets/classes.jpeg";
 import teacher from "../assets/teacher.jpeg";
@@ -69,9 +70,7 @@ const HomePage = () => {
               <p className="card-text">
                 Vous pouvez ici gérer le système de création des classes.
               </p>
-              <a href="/class" className="btn btn-primary">
-                Gérer
-              </a>
+              <Link to="/class">Gérer</Link>
             </div>
           </div>
         </div>
@@ -89,9 +88,7 @@ const HomePage = () => {
               <p className="card-text">
                 Vous pouvez ici gérer l'inscription, les comptes des étudiants
               </p>
-              <a href="/student" className="btn btn-primary">
-                Gérer
-              </a>
+              <Link to="/student">Gérer</Link>
             </div>
           </div>
         </div>
@@ -109,9 +106,7 @@ const HomePage = () => {
               <p className="card-text">
                 Vous pouvez ici gérer le système de création des enseignants,
               </p>
-              <a href="/teacher" className="btn btn-primary">
-                Gérer
-              </a>
+              <Link to="/teacher">Gérer</Link>
             </div>
           </div>
         </div>

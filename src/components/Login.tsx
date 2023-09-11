@@ -125,7 +125,7 @@ const Login = () => {
           <p>Vous n'avez pas encore un compte ? inscrivez-vous.</p>
           <Link to="/teacherRegistration">Inscription enseignant</Link>
           <br />
-          <Link to="/studentRegistration">Inscription enseignant</Link>
+          <Link to="/studentRegistration">Inscription étudiant</Link>
           <br />
           <a href="/student"> Inscription parent</a>
         </div>
