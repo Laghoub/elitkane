@@ -335,8 +335,7 @@ const Teacher = () => {
                 </p>
                 <p className="card-text">
                   <small className="text-body-secondary">
-                    Remarque: Tous les champs sont obligatoire sauf la filiere
-                    pour le cycle secondaire.
+                    Remarque: Tous les champs sont obligatoires.
                   </small>
                 </p>
               </div>

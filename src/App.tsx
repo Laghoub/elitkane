@@ -1,14 +1,12 @@
 import AppRouter from "./components/AppRouter";
-import { MyContextProvider } from "./components/Mycontext";
 import Login from "./components/Login";
 import Alert from "./components/HomePage";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Message from "./Message";
 const App = () => {
   return (
-    <MyContextProvider>
-      <AppRouter />
-    </MyContextProvider>
+    <AppRouter />
+
     /*
     <Routes>
       <Route path="/home" element={<Alert />} />

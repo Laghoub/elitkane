@@ -3,12 +3,9 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Alert from "./HomePage";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useMyContext } from "./Mycontext";
 import logo from "../assets/logo.png";
 
 const Login = () => {
-  const { status, id, name, authorized, unAuthorized, updateId } =
-    useMyContext();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

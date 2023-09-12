@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import { useMyContext } from "./Mycontext";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import students from "../assets/students.jpeg";

@@ -9,7 +9,7 @@ import {
   Navigate,
   redirect,
 } from "react-router-dom";
-import { useMyContext } from "./Mycontext";
+
 import Student from "./Student";
 import StudentRegistration from "./StudentRegistration";
 import SuccessPage from "./SuccessPage";
@@ -17,7 +17,6 @@ import TeacherRegistration from "./TeacherRegistration";
 
 const AppRouter: React.FC = () => {
   const isLoggedIn = localStorage.getItem("token");
-  const { status, authorized, unAuthorized, updateId } = useMyContext();
   return (
     <BrowserRouter>
       <Routes>
