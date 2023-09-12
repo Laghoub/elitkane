@@ -81,6 +81,9 @@ const Login = () => {
         <div className="col-md-4 login-form-1">
           {/* Logo */}
           <img src={logo} alt="Logo" className="logo" />
+          <p>Plateforme web développée par: LAGHOUB Nassim</p>
+          <p>elitkane.website@gmail.com</p>
+          <p>Tous droits réservés</p>
         </div>
         <div className="col-md-4 login-form-2">
           {/* Champs de saisie */}
