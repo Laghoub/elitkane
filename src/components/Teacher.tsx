@@ -18,7 +18,7 @@ const Teacher = () => {
     nom: string;
     prenom: string;
     matiereEnseignee: string;
-    classe: string;
+    idClasse: string;
   };
 
   type TeacherType = {
@@ -964,7 +964,7 @@ const Teacher = () => {
                       <td>{affectation.nom}</td>
                       <td>{affectation.prenom}</td>
                       <td>{affectation.matiereEnseignee}</td>
-                      <td>{affectation.classe}</td>
+                      <td>{affectation.idClasse}</td>
                     </tr>
                   ))}
                 </tbody>
