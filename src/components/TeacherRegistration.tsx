@@ -77,7 +77,7 @@ const TeacherRegistration = () => {
     }
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/teacher",
+        "https://elitkane.onrender.com/api/teacher",
         teacherData
       );
       console.log("Teacher added:", response.data);
