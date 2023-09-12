@@ -124,7 +124,7 @@ const Login = () => {
           <br />
           <Link to="/studentRegistration">Inscription étudiant</Link>
           <br />
-          <a href="/student"> Inscription parent</a>
+          <Link to="/waiting">Inscription parent</Link>
         </div>
       </div>
     </div>
