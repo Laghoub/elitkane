@@ -13,6 +13,14 @@ const Teacher = () => {
     idClasse: string;
   };
 
+  type AffectationType = {
+    matricule: string;
+    nom: string;
+    prenom: string;
+    matiereEnseignee: string;
+    classe: string;
+  };
+
   type TeacherType = {
     matricule: string;
     nom: string;
@@ -33,6 +41,7 @@ const Teacher = () => {
   const [activeTab, setActiveTab] = useState("inscription");
   const [showToast, setShowToast] = useState(false);
   const [teachers, setTeachers] = useState([] as TeacherType[]);
+  const [affectations, setAffectations] = useState([] as AffectationType[]);
   const [teachersValidated, setTeachersValidated] = useState(
     [] as TeacherType[]
   );
@@ -160,6 +169,7 @@ const Teacher = () => {
     fetchClasses();
     fetchTeachers(validation);
     fetchValidatedTeachers(finalValidation);
+    fetchAffectations();
   }, []);
 
   const handleSubmit = async (e: any) => {
@@ -278,15 +288,33 @@ const Teacher = () => {
       }
 
       fetchClasses();
+      fetchTeachers(validation);
+      fetchValidatedTeachers(finalValidation);
       console.log(response.data);
       // Réinitialiser les champs après l'insertion
       setmatriculeTeacher("");
       setidClasseTeacher("");
       setErrorMessage("");
+      setSuccessMessage("");
     } catch (error) {
       setErrorMessage(
         "L'affectation ne peut pas etre inséré, car elle existe déja."
       );
+    }
+  };
+
+  const fetchAffectations = async () => {
+    try {
+      const response = await axios.get(
+        "https://elitkane.onrender.com/api/affectation"
+      );
+      if (response.data.success == 1) {
+        setAffectations(response.data.data);
+      } else {
+        console.log("not authorized");
+      }
+    } catch (error) {
+      console.error("Error fetching affectations:", error);
     }
   };
 
@@ -874,7 +902,7 @@ const Teacher = () => {
                         key={enseignant.matricule}
                         value={enseignant.matricule}
                       >
-                        {enseignant.nom}
+                        {enseignant.nom + "" + enseignant.prenom}
                       </option>
                     ))}
                   </Form.Control>
@@ -909,6 +937,38 @@ const Teacher = () => {
               >
                 Affecter
               </button>
+            </div>
+          </div>
+          <br />
+          <div className="col-md-12">
+            {/* List of Classes section */}
+            <div className="mt-4">
+              <h1>Liste des affectations</h1>
+              <br />
+
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>matricule</th>
+                    <th>Nom</th>
+                    <th>prénom</th>
+                    <th>Matiere</th>
+                    <th>Classe</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {affectations.map((affectation, index) => (
+                    <tr key={affectation.matricule}>
+                      <td>{affectation.matricule}</td>
+                      <td>{affectation.nom}</td>
+                      <td>{affectation.prenom}</td>
+                      <td>{affectation.matiereEnseignee}</td>
+                      <td>{affectation.classe}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </TabPane>
