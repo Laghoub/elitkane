@@ -78,16 +78,18 @@ const Login = () => {
         className="row justify-content-center align-items-center login-container"
         style={{ marginTop: "100px" }}
       >
-        <div className="col-md-4 login-form-1">
-          {/* Logo */}
-          <img src={logo} alt="Logo" className="logo" />
-          <b>
-            <p style={{ color: "#1976D2" }}>
-              Plateforme web développée par: LAGHOUB Nassim
-              <p>elitkane.website@gmail.com | Touts droits réservés</p>
-            </p>
-          </b>
-        </div>
+        <center>
+          <div className="col-md-4 login-form-1">
+            {/* Logo */}
+            <img src={logo} alt="Logo" className="logo" />
+            <b>
+              <p style={{ color: "#1976D2" }}>
+                Plateforme web développée par: LAGHOUB Nassim
+                <p>elitkane.website@gmail.com | Touts droits réservés</p>
+              </p>
+            </b>
+          </div>
+        </center>
 
         <div className="col-md-4 login-form-2">
           {/* Champs de saisie */}

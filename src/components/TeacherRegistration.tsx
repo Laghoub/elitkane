@@ -235,6 +235,7 @@ const TeacherRegistration = () => {
                 ))}
               </Form.Control>
             </Form.Group>
+            <br />
 
             {/* Ajouter les autres champs ici */}
           </Col>
