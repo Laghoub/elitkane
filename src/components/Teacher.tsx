@@ -351,6 +351,15 @@ const Teacher = () => {
     return classFilter && searchFilter;
   });
 
+  const filteredAffectations = affectations.filter((affectation) => {
+    const classFilter =
+      !selectedClass || affectation.idClasse === selectedClass;
+    const searchFilter =
+      !searchTerm ||
+      affectation.nom.toLowerCase().includes(searchTerm.toLowerCase());
+    return classFilter && searchFilter;
+  });
+
   return (
     <div className="container">
       <div
@@ -945,6 +954,34 @@ const Teacher = () => {
             <div className="mt-4">
               <h1>Liste des affectations</h1>
               <br />
+              <select
+                value={selectedClass}
+                onChange={(e) => setSelectedClass(e.target.value)}
+              >
+                <option value="">Toutes les classes</option>
+                {classesList.map((classe) => (
+                  <option key={classe.idClasse} value={classe.idClasse}>
+                    {classe.idClasse}
+                  </option>
+                ))}
+              </select>
+              <br />
+              <br />
+              <div className="col-md-6">
+                <div className="input-group">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Rechercher par nom"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                  <button className="btn btn-outline-secondary" type="button">
+                    Rechercher
+                  </button>
+                </div>
+              </div>
+              <br />
 
               <table className="table">
                 <thead>
@@ -958,7 +995,7 @@ const Teacher = () => {
                 </thead>
 
                 <tbody>
-                  {affectations.map((affectation, index) => (
+                  {filteredAffectations.map((affectation, index) => (
                     <tr key={affectation.matricule}>
                       <td>{affectation.matricule}</td>
                       <td>{affectation.nom}</td>
