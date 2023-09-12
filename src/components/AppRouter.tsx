@@ -1,15 +1,10 @@
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./Login";
 import HomePage from "./HomePage";
 import Class from "./Class";
 import Teacher from "./Teacher";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-  redirect,
-} from "react-router-dom";
-
 import Student from "./Student";
 import StudentRegistration from "./StudentRegistration";
 import SuccessPage from "./SuccessPage";
@@ -17,6 +12,7 @@ import TeacherRegistration from "./TeacherRegistration";
 
 const AppRouter: React.FC = () => {
   const isLoggedIn = localStorage.getItem("token");
+
   return (
     <BrowserRouter>
       <Routes>
@@ -33,13 +29,11 @@ const AppRouter: React.FC = () => {
           path="/student"
           element={isLoggedIn ? <Student /> : <Navigate to="/" />}
         />
-
         <Route
           path="/teacher"
           element={isLoggedIn ? <Teacher /> : <Navigate to="/" />}
         />
         <Route path="/teacherT" element={<Teacher />} />
-
         <Route path="/studentRegistration" element={<StudentRegistration />} />
         <Route path="/teacherRegistration" element={<TeacherRegistration />} />
         <Route path="/successRegistration" element={<SuccessPage />} />
@@ -48,5 +42,7 @@ const AppRouter: React.FC = () => {
     </BrowserRouter>
   );
 };
+
+ReactDOM.render(<AppRouter />, document.getElementById("root"));
 
 export default AppRouter;
