@@ -28,6 +28,8 @@ const Teacher = () => {
   };
   const validation = "0";
   const finalValidation = "1";
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const [activeTab, setActiveTab] = useState("inscription");
   const [showToast, setShowToast] = useState(false);
   const [teachers, setTeachers] = useState([] as TeacherType[]);
@@ -57,6 +59,8 @@ const Teacher = () => {
     "Informatique",
   ]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [matriculeTeacher, setmatriculeTeacher] = useState("");
+  const [idClasseTeacher, setidClasseTeacher] = useState("");
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [teacherToDeleteId, setTeacherToDeleteId] = useState("");
   const [editingTeacher, setEditingTeacher] = useState({
@@ -251,6 +255,41 @@ const Teacher = () => {
     }
   };
 
+  const AddAffectation = async (e: any) => {
+    e.preventDefault();
+
+    const newAffectation = {
+      matricule: matriculeTeacher,
+      idClasse: idClasseTeacher,
+    };
+
+    try {
+      const response = await axios.post(
+        "https://elitkane.onrender.com/api/affectation",
+        newAffectation
+      );
+
+      if (response.data.success === 1) {
+        setSuccessMessage("L'affectation a été faite avec succès");
+      } else {
+        setErrorMessage(
+          "L'affectation ne peut pas etre inséré, car elle existe déja."
+        );
+      }
+
+      fetchClasses();
+      console.log(response.data);
+      // Réinitialiser les champs après l'insertion
+      setmatriculeTeacher("");
+      setidClasseTeacher("");
+      setErrorMessage("");
+    } catch (error) {
+      setErrorMessage(
+        "L'affectation ne peut pas etre inséré, car elle existe déja."
+      );
+    }
+  };
+
   const closeEditModal = () => {
     setEditingTeacher({
       matricule: "",
@@ -313,6 +352,15 @@ const Teacher = () => {
             onClick={() => toggleTab("listesFinales")}
           >
             Listes finales
+          </NavLink>
+        </NavItem>
+
+        <NavItem>
+          <NavLink
+            className={activeTab === "affectation" ? "active" : ""}
+            onClick={() => toggleTab("affectation")}
+          >
+            Affectation
           </NavLink>
         </NavItem>
       </Nav>
@@ -795,6 +843,72 @@ const Teacher = () => {
                   </tbody>
                 </table>
               </div>
+            </div>
+          </div>
+        </TabPane>
+
+        <TabPane tabId="affectation">
+          <div className="container mt-5">
+            <h1>Gestion des affectations</h1>
+            {errorMessage && (
+              <div className="alert alert-danger">{errorMessage}</div>
+            )}
+            {successMessage && (
+              <div className="alert alert-success">{successMessage}</div>
+            )}
+            <div className="mb-3">
+              <Form>
+                <Form.Group controlId="Enseignant">
+                  <Form.Control
+                    as="select"
+                    name="Enseignant"
+                    value={matriculeTeacher}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="" disabled>
+                      Enseignant
+                    </option>
+                    {teachersValidated.map((enseignant) => (
+                      <option
+                        key={enseignant.matricule}
+                        value={enseignant.matricule}
+                      >
+                        {enseignant.nom}
+                      </option>
+                    ))}
+                  </Form.Control>
+                </Form.Group>
+                <br />
+
+                <Form.Group controlId="classe">
+                  <Form.Control
+                    as="select"
+                    name="classe"
+                    value={idClasseTeacher}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="" disabled>
+                      Classe
+                    </option>
+                    {classesList.map((classe) => (
+                      <option key={classe.idClasse} value={classe.idClasse}>
+                        {classe.idClasse}
+                      </option>
+                    ))}
+                  </Form.Control>
+                </Form.Group>
+              </Form>
+
+              <br />
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={AddAffectation}
+              >
+                Affecter
+              </button>
             </div>
           </div>
         </TabPane>
