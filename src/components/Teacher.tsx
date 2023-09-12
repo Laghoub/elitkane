@@ -911,7 +911,7 @@ const Teacher = () => {
                         key={enseignant.matricule}
                         value={enseignant.matricule}
                       >
-                        {enseignant.nom + "" + enseignant.prenom}
+                        {enseignant.nom + " " + enseignant.prenom}
                       </option>
                     ))}
                   </Form.Control>
