@@ -43,6 +43,4 @@ const AppRouter: React.FC = () => {
   );
 };
 
-ReactDOM.render(<AppRouter />, document.getElementById("root"));
-
 export default AppRouter;
