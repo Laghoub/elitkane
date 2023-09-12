@@ -863,7 +863,7 @@ const Teacher = () => {
                     as="select"
                     name="Enseignant"
                     value={matriculeTeacher}
-                    onChange={handleChange}
+                    onChange={(e) => setmatriculeTeacher(e.target.value)}
                     required
                   >
                     <option value="" disabled>
@@ -886,7 +886,7 @@ const Teacher = () => {
                     as="select"
                     name="classe"
                     value={idClasseTeacher}
-                    onChange={handleChange}
+                    onChange={(e) => setidClasseTeacher(e.target.value)}
                     required
                   >
                     <option value="" disabled>
