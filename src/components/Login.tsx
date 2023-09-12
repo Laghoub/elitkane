@@ -73,7 +73,7 @@ const Login = () => {
   }
 
   return (
-    <div className="container">
+    <div className="container" style={{}}>
       <div
         className="row justify-content-center align-items-center login-container"
         style={{ marginTop: "100px" }}
@@ -81,10 +81,14 @@ const Login = () => {
         <div className="col-md-4 login-form-1">
           {/* Logo */}
           <img src={logo} alt="Logo" className="logo" />
-          <p>Plateforme web développée par: LAGHOUB Nassim</p>
-          <p>elitkane.website@gmail.com</p>
-          <p>Tous droits réservés</p>
+          <b>
+            <p style={{ color: "#1976D2" }}>
+              Plateforme web développée par: LAGHOUB Nassim
+              <p>elitkane.website@gmail.com | Touts droits réservés</p>
+            </p>
+          </b>
         </div>
+
         <div className="col-md-4 login-form-2">
           {/* Champs de saisie */}
           <h2>Se connecter</h2>

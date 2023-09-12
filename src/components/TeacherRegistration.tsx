@@ -13,6 +13,7 @@ const TeacherRegistration = () => {
   const [studentsValidated, setStudentsValidated] = useState([]);
   const [selectedClass, setSelectedClass] = useState("");
   const [ensEtat, setensEtat] = useState(["Oui", "Non"]);
+  const [errorMessage, setErrorMessage] = useState("");
   const [matiereList, setMatiereList] = useState([
     "Mathématiques",
     "Langue Arabe",
@@ -36,6 +37,7 @@ const TeacherRegistration = () => {
 
   const [classesList, setClassesList] = useState([]);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [teacherData, setTeacherData] = useState({
     matricule: "",
     nom: "",
@@ -69,6 +71,10 @@ const TeacherRegistration = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    if (teacherData.mdp !== confirmPassword) {
+      setErrorMessage("Les mots de passe ne correspondent pas.");
+      return;
+    }
     try {
       const response = await axios.post(
         "http://localhost:3000/api/teacher",
@@ -134,12 +140,35 @@ const TeacherRegistration = () => {
               />
             </Form.Group>
             <br />
+            <Form.Group controlId="prenom">
+              <Form.Control
+                type="text"
+                name="prenom"
+                placeholder="Prénom"
+                value={teacherData.prenom}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <br />
+            <p>Date de naissance</p>
             <Form.Group controlId="dateNaissance">
               <Form.Control
                 type="date"
-                name="deteNaissance"
+                name="dateNaissance"
                 placeholder="Date de naissance"
                 value={teacherData.dateNaissance}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <br />
+            <Form.Group controlId="lieuNaissance">
+              <Form.Control
+                type="text"
+                name="lieuNaissance"
+                placeholder="Lieu de naissance"
+                value={teacherData.lieuNaissance}
                 onChange={handleChange}
                 required
               />
@@ -176,44 +205,7 @@ const TeacherRegistration = () => {
             </Form.Group>
 
             <br />
-            <h5>Les informations de connexion</h5>
-            <Form.Group controlId="nomUser">
-              <Form.Control
-                type="text"
-                name="nomUser"
-                placeholder="Nom d'utilisateur"
-                value={teacherData.nomUser}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
 
-            {/* Ajouter les autres champs ici */}
-          </Col>
-          <Col md={6}>
-            <Form.Group controlId="prenom">
-              <Form.Control
-                type="text"
-                name="prenom"
-                placeholder="Prénom"
-                value={teacherData.prenom}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-            <br />
-            <Form.Group controlId="lieuNaissance">
-              <Form.Control
-                type="text"
-                name="lieuNaissance"
-                placeholder="Lieu de naissance"
-                value={teacherData.lieuNaissance}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-
-            <br />
             <Form.Group controlId="email">
               <Form.Control
                 type="text"
@@ -243,8 +235,37 @@ const TeacherRegistration = () => {
                 ))}
               </Form.Control>
             </Form.Group>
+
+            {/* Ajouter les autres champs ici */}
+          </Col>
+
+          <Col md={6}>
+            <h5>Les informations de connexion</h5>
             <br />
-            <h5 style={{ color: "white" }}>.</h5>
+            <i>
+              <p>
+                Le nom d'utilisateur doit être constitué de la première lettre
+                de votre prénom suivie d'un tiret '_' suivi de votre nom. Par
+                exemple, pour un prénom Nassim et un nom Laghoub, le nom
+                d'utilisateur serait :{" "}
+                <span style={{ color: "#1976D2" }}>
+                  <b>n_laghoub</b>
+                </span>
+              </p>{" "}
+            </i>
+            <Form.Group controlId="nomUser">
+              <Form.Control
+                type="text"
+                name="nomUser"
+                placeholder="Nom d'utilisateur"
+                value={teacherData.nomUser}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+
+            <br />
+
             <Form.Group controlId="mdp">
               <Form.Control
                 type="password"
@@ -255,6 +276,21 @@ const TeacherRegistration = () => {
                 required
               />
             </Form.Group>
+            <br />
+            <Form.Group controlId="confirmPassword">
+              <Form.Control
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirmez le mot de passe"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+            </Form.Group>
+            <br />
+            {errorMessage && (
+              <div className="alert alert-danger">{errorMessage}</div>
+            )}
           </Col>
         </Row>{" "}
         <br />
