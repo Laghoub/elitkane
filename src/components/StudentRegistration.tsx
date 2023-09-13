@@ -19,6 +19,7 @@ const StudentRegistration = () => {
   const [students, setStudents] = useState([]);
   const [studentsValidated, setStudentsValidated] = useState([]);
   const [selectedClass, setSelectedClass] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [filiereList, setFiliereList] = useState([
     "Scientifique",
     "Matheleme",
@@ -30,6 +31,7 @@ const StudentRegistration = () => {
 
   const [classesList, setClassesList] = useState([] as ClassType[]);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [studentData, setStudentData] = useState({
     matricule: "",
     nom: "",
@@ -81,6 +83,10 @@ const StudentRegistration = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    if (studentData.mdp !== confirmPassword) {
+      setErrorMessage("Les mots de passe ne correspondent pas.");
+      return;
+    }
     try {
       const response = await axios.post(
         "https://elitkane.onrender.com/api/student",
@@ -113,27 +119,29 @@ const StudentRegistration = () => {
 
   return (
     <div className="container mt-5">
+      <h1 style={{ color: "white" }}>Inscription "Etudiant"</h1>
+      <br />
       <div
         className="card mb-3"
-        style={{ backgroundColor: "#03A9F4", color: "white" }}
+        style={{ backgroundColor: "#B3E5FC", color: "#022634" }}
       >
         <div className="card-body">
           <h5 className="card-title">La pré-inscription</h5>
           <p className="card-text">
-            Dans cette étape, vous devez saisir tous les champs du formulaire
-            d'inscription, une fois votre compte sera validé par
-            l'administration vous pouvez vous connecter avec votre nom
-            d'utilisateur et votre mot de passe.
+            Dans cette étape, vous devez remplir tous les champs du formulaire
+            d'inscription. Une fois votre compte validé par l'administration,
+            vous pourrez vous connecter avec votre nom d'utilisateur et votre
+            mot de passe.
           </p>
           <p className="card-text">
             <small className="text-body-secondary">
-              Remarque: Tous les champs sont obligatoire sauf la filiere pour le
-              cycle secondaire.
+              Remarque : Tous les champs sont obligatoires sauf la filière pour
+              le cycle secondaire.
             </small>
           </p>
         </div>
       </div>
-      <h5>Les informations personnelles</h5>
+      <h5 style={{ color: "#B3E5FC" }}>Les informations personnelles</h5>
       <Form>
         <Row>
           <Col md={6}>
@@ -148,17 +156,59 @@ const StudentRegistration = () => {
               />
             </Form.Group>
             <br />
+            <Form.Group controlId="prenom">
+              <Form.Control
+                type="text"
+                name="prenom"
+                placeholder="Prénom"
+                value={studentData.prenom}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <br />
+            <p style={{ color: "#B3E5FC" }}>Date de naissance</p>
             <Form.Group controlId="dateNaissance">
               <Form.Control
                 type="date"
-                name="deteNaissance"
+                name="dateNaissance"
                 placeholder="Date de naissance"
                 value={studentData.dateNaissance}
                 onChange={handleChange}
                 required
               />
-              <br />
             </Form.Group>
+            <br />
+            <Form.Group controlId="lieuNaissance">
+              <Form.Control
+                type="text"
+                name="lieuNaissance"
+                placeholder="Lieu de naissance"
+                value={studentData.lieuNaissance}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <br />
+            <Form.Group controlId="filiere">
+              <Form.Control
+                as="select"
+                name="filiere"
+                value={studentData.filiere}
+                onChange={handleChange}
+                required
+              >
+                <option value="" disabled>
+                  Filiere
+                </option>
+                {filiereList.map((filiere) => (
+                  <option key={filiere} value={filiere}>
+                    {filiere}
+                  </option>
+                ))}
+              </Form.Control>
+            </Form.Group>
+            <br />
             <Form.Group controlId="classe">
               <Form.Control
                 as="select"
@@ -189,6 +239,18 @@ const StudentRegistration = () => {
               />
             </Form.Group>
             <br />
+            <Form.Group controlId="prenomPere">
+              <Form.Control
+                type="text"
+                name="prenomPere"
+                placeholder="Prénom du pere"
+                value={studentData.prenomPere}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+
+            <br />
             <Form.Group controlId="nomPreMere">
               <Form.Control
                 type="text"
@@ -200,74 +262,7 @@ const StudentRegistration = () => {
               />
             </Form.Group>
             <br />
-            <h5>Les informations de connexion</h5>
-            <Form.Group controlId="nomUser">
-              <Form.Control
-                type="text"
-                name="nomUser"
-                placeholder="Nom d'utilisateur"
-                value={studentData.nomUser}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
 
-            {/* Ajouter les autres champs ici */}
-          </Col>
-          <Col md={6}>
-            <Form.Group controlId="prenom">
-              <Form.Control
-                type="text"
-                name="prenom"
-                placeholder="Prénom"
-                value={studentData.prenom}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-            <br />
-            <Form.Group controlId="lieuNaissance">
-              <Form.Control
-                type="text"
-                name="lieuNaissance"
-                placeholder="Lieu de naissance"
-                value={studentData.lieuNaissance}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-            <br />
-
-            <Form.Group controlId="filiere">
-              <Form.Control
-                as="select"
-                name="filiere"
-                value={studentData.filiere}
-                onChange={handleChange}
-                required
-              >
-                <option value="" disabled>
-                  Filiere
-                </option>
-                {filiereList.map((filiere) => (
-                  <option key={filiere} value={filiere}>
-                    {filiere}
-                  </option>
-                ))}
-              </Form.Control>
-            </Form.Group>
-            <br />
-            <Form.Group controlId="prenomPere">
-              <Form.Control
-                type="text"
-                name="prenomPere"
-                placeholder="Prénom du pere"
-                value={studentData.prenomPere}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-            <br />
             <Form.Group controlId="mail">
               <Form.Control
                 type="text"
@@ -279,26 +274,69 @@ const StudentRegistration = () => {
               />
             </Form.Group>
             <br />
-            <h5 style={{ color: "white" }}>.</h5>
+
+            {/* Ajouter les autres champs ici */}
+          </Col>
+          <Col md={6}>
+            <h5 style={{ color: "#B3E5FC" }}>Les informations de connexion</h5>
+            <br />
+            <i>
+              <p style={{ color: "white" }}>
+                Le nom d'utilisateur doit être constitué de la première lettre
+                de votre prénom suivie d'un tiret '_' suivi de votre nom. Par
+                exemple, pour un prénom Islem et un nom Bouadla, le nom
+                d'utilisateur serait :{" "}
+                <span style={{ color: "#B3E5FC" }}>
+                  <b>i_bouadla</b>
+                </span>
+              </p>{" "}
+            </i>
+            <Form.Group controlId="nomUser">
+              <Form.Control
+                type="text"
+                name="nomUser"
+                placeholder="Votre nom d'utilisateur"
+                value={studentData.nomUser}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+
             <Form.Group controlId="mdp">
               <Form.Control
                 type="password"
                 name="mdp"
-                placeholder="Mot de passe"
+                placeholder="Votre mot de passe"
                 value={studentData.mdp}
                 onChange={handleChange}
                 required
               />
             </Form.Group>
+
+            <br />
+            <Form.Group controlId="confirmPassword">
+              <Form.Control
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirmez le mot de passe"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+            </Form.Group>
+            <br />
+            {errorMessage && (
+              <div className="alert alert-danger">{errorMessage}</div>
+            )}
           </Col>
         </Row>{" "}
         <br />
-        <h5>
+        <h5 style={{ color: "#F44336" }}>
           Assurez-vous que toutes les informations saisies sont correctes.
         </h5>
-        <h6>
+        <h6 style={{ color: "white" }}>
           Veuillez bien noter vos informations de connexion afin de les utiliser
-          dans la section "connexion"
+          dans la section 'connexion'.
         </h6>
         <Button
           type="submit"
