@@ -1,7 +1,8 @@
 import React from "react";
 import { useState, ReactNode, useEffect } from "react";
 import axios from "axios";
-import { Modal, Button, Form } from "react-bootstrap";
+import { Modal, Button, Form, Navbar, Nav } from "react-bootstrap";
+import Menu from "./Menu";
 
 const Class = () => {
   type ClassType = {
@@ -167,13 +168,19 @@ const Class = () => {
 
   return (
     <div className="container mt-5">
-      <h1>Gestion des classes</h1>
+      <Menu />
+      <br />
+      <h1 style={{ color: "#e3f2fd" }}>Gestion des classes</h1>
       {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
       {successMessage && (
         <div className="alert alert-success">{successMessage}</div>
       )}
       <div className="mb-3">
-        <label htmlFor="cycle" className="form-label">
+        <label
+          htmlFor="cycle"
+          className="form-label"
+          style={{ color: "#e3f2fd" }}
+        >
           Cycle
         </label>
         <select
@@ -183,7 +190,7 @@ const Class = () => {
           onChange={(e) => setCycle(e.target.value)}
           required
         >
-          <option value="" disabled>
+          <option value="" disabled style={{ color: "#e3f2fd" }}>
             Sélectionner un cycle
           </option>
           {cycles.map((c, index) => (
@@ -194,7 +201,11 @@ const Class = () => {
         </select>
       </div>
       <div className="mb-3">
-        <label htmlFor="niveau" className="form-label">
+        <label
+          htmlFor="niveau"
+          className="form-label"
+          style={{ color: "#e3f2fd" }}
+        >
           Niveau
         </label>
         <input
@@ -206,7 +217,7 @@ const Class = () => {
           required
         />
       </div>
-      <div className="mb-3">
+      <div className="mb-3" style={{ color: "#e3f2fd" }}>
         <label htmlFor="numero" className="form-label">
           Numéro
         </label>
@@ -226,7 +237,7 @@ const Class = () => {
       <div className="col-md-12">
         {/* List of Classes section */}
         <div className="mt-4">
-          <h1>Liste des Classes</h1>
+          <h1 style={{ color: "#e3f2fd" }}>Liste des Classes</h1>
           <br />
           <div className="mb-3">
             <select

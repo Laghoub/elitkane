@@ -23,7 +23,7 @@ const HomePage = () => {
 
   return (
     <div className="container home-container" style={{ marginTop: "60px" }}>
-      <div className="col-md-10">
+      <div className="col-md-12">
         {/* Carte du profil de l'utilisateur */}
         <div className="card profile-card">
           <div className="row no-gutters">
@@ -55,81 +55,81 @@ const HomePage = () => {
 
       <br />
       <br />
-      <div className="row justify-content-center">
-        <div className="col-md-3">
-          <div className="card" style={{ width: "18rem" }}>
-            <img
-              src={classes}
-              alt="classes"
-              className="classes"
-              style={{ width: "280px", height: "150px" }}
-            />
-            <div className="card-body">
-              <h5 className="card-title">Gestion des classes</h5>
-              <p className="card-text">
-                Vous pouvez ici gérer le système de création des classes.
-              </p>
-              <Link to="/class">Gérer</Link>
+      <center>
+        <div className="row justify-content-center">
+          <div className="col-md-3">
+            <div className="card" style={{ width: "18rem" }}>
+              <img
+                src={classes}
+                alt="classes"
+                className="classes"
+                style={{ width: "280px", height: "150px" }}
+              />
+              <div className="card-body">
+                <h5 className="card-title">Gestion des classes</h5>
+                <p className="card-text">
+                  Vous pouvez ici gérer le système de création des classes.
+                </p>
+                <Link to="/class">Gérer</Link>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-3">
+            {/* Carte de gestion des classes */}
+            <div className="card" style={{ width: "18rem" }}>
+              <img
+                src={students}
+                alt="Logo"
+                className="logo"
+                style={{ width: "280px", height: "150px" }}
+              />
+              <div className="card-body">
+                <h5 className="card-title">Gestion des étudiants</h5>
+                <p className="card-text">
+                  Vous pouvez ici gérer l'inscription, les comptes des étudiants
+                </p>
+                <Link to="/student">Gérer</Link>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-3">
+            {/* Carte de gestion des classes */}
+            <div className="card" style={{ width: "18rem" }}>
+              <img
+                src={teacher}
+                alt="Logo"
+                className="logo"
+                style={{ width: "280px", height: "150px" }}
+              />
+              <div className="card-body">
+                <h5 className="card-title">Gestion des enseignants</h5>
+                <p className="card-text">
+                  Vous pouvez ici gérer le système de création des enseignants,
+                </p>
+                <Link to="/teacher">Gérer</Link>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-3">
+            {/* Carte de gestion des classes */}
+            <div className="card" style={{ width: "18rem" }}>
+              <img
+                src={edt}
+                alt="Logo"
+                className="logo"
+                style={{ width: "250px", height: "150px" }}
+              />
+              <div className="card-body">
+                <h5 className="card-title">Gestion des EDT </h5>
+                <p className="card-text">
+                  Vous pouvez ici gérer le emplois du temps de tous les cycles.
+                </p>
+                <Link to="/teacher">Gérer</Link>
+              </div>
             </div>
           </div>
         </div>
-        <div className="col-md-3">
-          {/* Carte de gestion des classes */}
-          <div className="card" style={{ width: "18rem" }}>
-            <img
-              src={students}
-              alt="Logo"
-              className="logo"
-              style={{ width: "280px", height: "150px" }}
-            />
-            <div className="card-body">
-              <h5 className="card-title">Gestion des étudiants</h5>
-              <p className="card-text">
-                Vous pouvez ici gérer l'inscription, les comptes des étudiants
-              </p>
-              <Link to="/student">Gérer</Link>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-3">
-          {/* Carte de gestion des classes */}
-          <div className="card" style={{ width: "18rem" }}>
-            <img
-              src={teacher}
-              alt="Logo"
-              className="logo"
-              style={{ width: "280px", height: "150px" }}
-            />
-            <div className="card-body">
-              <h5 className="card-title">Gestion des enseignants</h5>
-              <p className="card-text">
-                Vous pouvez ici gérer le système de création des enseignants,
-              </p>
-              <Link to="/teacher">Gérer</Link>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-3">
-          {/* Carte de gestion des classes */}
-          <div className="card" style={{ width: "18rem" }}>
-            <img
-              src={edt}
-              alt="Logo"
-              className="logo"
-              style={{ width: "250px", height: "150px" }}
-            />
-            <div className="card-body">
-              <h5 className="card-title">Gestion des EDT </h5>
-              <p className="card-text">
-                Vous pouvez ici gérer le emplois du temps de tous les cycles.
-              </p>
-              <a href="#" className="btn btn-primary">
-                Gérer
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+      </center>
       <br />
       <br />
     </div>

@@ -34,7 +34,7 @@ const AppRouter: React.FC = () => {
           path="/teacher"
           element={isLoggedIn ? <Teacher /> : <Navigate to="/" />}
         />
-        <Route path="/teacherT" element={<Teacher />} />
+        <Route path="/classT" element={<Class />} />
         <Route path="/studentRegistration" element={<StudentRegistration />} />
         <Route path="/teacherRegistration" element={<TeacherRegistration />} />
         <Route path="/successRegistration" element={<SuccessPage />} />
