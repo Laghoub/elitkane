@@ -577,6 +577,7 @@ const Student = () => {
                       <th>Prénom</th>
                       <th>Date de Naissance</th>
                       <th>Classe</th>
+                      <th>Actions </th>
                     </tr>
                   </thead>
                   <tbody>

@@ -993,6 +993,7 @@ const Teacher = () => {
                     <th>prénom</th>
                     <th>Matiere</th>
                     <th>Classe</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
 
