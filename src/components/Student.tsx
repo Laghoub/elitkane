@@ -3,6 +3,7 @@ import { useState, ReactNode, useEffect } from "react";
 import { Nav, NavItem, NavLink, TabContent, TabPane } from "reactstrap";
 import axios from "axios";
 import { Modal, Form, Button, Row, Col, Toast } from "react-bootstrap";
+import Menu from "./Menu";
 
 const Student = () => {
   type StudentType = {
@@ -281,7 +282,8 @@ const Student = () => {
   });
 
   return (
-    <div className="container">
+    <div className="container mt-5">
+      <Menu />
       <div
         className="row justify-content-center align-items-center login-container"
         style={{ marginTop: "70px" }}

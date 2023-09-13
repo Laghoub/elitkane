@@ -25,7 +25,10 @@ const HomePage = () => {
     <div className="container home-container" style={{ marginTop: "60px" }}>
       <div className="col-md-12">
         {/* Carte du profil de l'utilisateur */}
-        <div className="card profile-card">
+        <div
+          className="card profile-card"
+          style={{ backgroundColor: "#022634" }}
+        >
           <div className="row no-gutters">
             <div className="col-md-2">
               {/* Image de l'utilisateur */}
@@ -39,8 +42,10 @@ const HomePage = () => {
             <div className="col-md-10">
               <div className="card-body">
                 {/* Informations de l'utilisateur */}
-                <h5 className="card-title">Bienvenue {name} </h5>
-                <p className="card-text">
+                <h5 className="card-title" style={{ color: "#e3f2fd" }}>
+                  Bienvenue {name}{" "}
+                </h5>
+                <p className="card-text" style={{ color: "#e3f2fd" }}>
                   Vous êtes connectés en tant que {role} de l'école privée el
                   Itkane el Ilmi
                 </p>

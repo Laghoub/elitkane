@@ -17,13 +17,13 @@ const Menu = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto" style={{ color: "#022634" }}>
-          <Nav.Link href="#" style={{ color: "#e3f2fd" }}>
+          <Nav.Link href="/home" style={{ color: "#e3f2fd" }}>
             Accueil
           </Nav.Link>
-          <Nav.Link href="#" style={{ color: "#e3f2fd" }}>
+          <Nav.Link href="/teacher" style={{ color: "#e3f2fd" }}>
             Enseignant
           </Nav.Link>
-          <Nav.Link href="#" style={{ color: "#e3f2fd" }}>
+          <Nav.Link href="student" style={{ color: "#e3f2fd" }}>
             Étudiant
           </Nav.Link>
           <Nav.Link href="#" style={{ color: "#e3f2fd" }}>
