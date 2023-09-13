@@ -86,6 +86,10 @@ const StudentRegistration = () => {
     if (studentData.mdp !== confirmPassword) {
       setErrorMessage("Les mots de passe ne correspondent pas.");
       return;
+    } else {
+      if (!studentData.nom) {
+        setErrorMessage("Vous devez remplir tous les champs du formulaire");
+      }
     }
     try {
       const response = await axios.post(
@@ -301,7 +305,7 @@ const StudentRegistration = () => {
                 required
               />
             </Form.Group>
-
+            <br />
             <Form.Group controlId="mdp">
               <Form.Control
                 type="password"
