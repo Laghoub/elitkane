@@ -27,6 +27,7 @@ const StudentRegistration = () => {
     "Gestion",
     "Literraire",
     "Langues étrangeres",
+    "Pas de filière",
   ]);
 
   const [classesList, setClassesList] = useState([] as ClassType[]);
@@ -87,37 +88,38 @@ const StudentRegistration = () => {
       setErrorMessage("Les mots de passe ne correspondent pas.");
       return;
     } else {
-      if (!studentData.nom) {
+      if (!studentData) {
         setErrorMessage("Vous devez remplir tous les champs du formulaire");
-      }
-    }
-    try {
-      const response = await axios.post(
-        "https://elitkane.onrender.com/api/student",
-        studentData
-      );
-      console.log("Student added:", response.data);
+      } else {
+        try {
+          const response = await axios.post(
+            "https://elitkane.onrender.com/api/student",
+            studentData
+          );
+          console.log("Student added:", response.data);
 
-      // Réinitialiser les champs après l'insertion
-      setStudentData({
-        matricule: "",
-        nom: "",
-        prenom: "",
-        dateNaissance: "",
-        lieuNaissance: "",
-        classe: "",
-        filiere: "",
-        adresse: "",
-        prenomPere: "",
-        nomPreMere: "",
-        mail: "",
-        nomUser: "",
-        mdp: "",
-      });
-      setShowToast(false);
-      navigate("/successRegistration");
-    } catch (error) {
-      console.error("Error adding student:", error);
+          // Réinitialiser les champs après l'insertion
+          setStudentData({
+            matricule: "",
+            nom: "",
+            prenom: "",
+            dateNaissance: "",
+            lieuNaissance: "",
+            classe: "",
+            filiere: "",
+            adresse: "",
+            prenomPere: "",
+            nomPreMere: "",
+            mail: "",
+            nomUser: "",
+            mdp: "",
+          });
+          setShowToast(false);
+          navigate("/successRegistration");
+        } catch (error) {
+          console.error("Error adding student:", error);
+        }
+      }
     }
   };
 
@@ -139,8 +141,7 @@ const StudentRegistration = () => {
           </p>
           <p className="card-text">
             <small className="text-body-secondary">
-              Remarque : Tous les champs sont obligatoires sauf la filière pour
-              le cycle secondaire.
+              Remarque : Tous les champs sont obligatoires.
             </small>
           </p>
         </div>

@@ -74,32 +74,37 @@ const TeacherRegistration = () => {
     if (teacherData.mdp !== confirmPassword) {
       setErrorMessage("Les mots de passe ne correspondent pas.");
       return;
-    }
-    try {
-      const response = await axios.post(
-        "https://elitkane.onrender.com/api/teacher",
-        teacherData
-      );
-      console.log("Teacher added:", response.data);
+    } else {
+      if (!teacherData) {
+        setErrorMessage("Vous devez remplir tous les champs du formulaire");
+      } else {
+        try {
+          const response = await axios.post(
+            "https://elitkane.onrender.com/api/teacher",
+            teacherData
+          );
+          console.log("Teacher added:", response.data);
 
-      // Réinitialiser les champs après l'insertion
-      setTeacherData({
-        matricule: "",
-        nom: "",
-        prenom: "",
-        dateNaissance: "",
-        lieuNaissance: "",
-        matiereEnseignee: "",
-        adresse: "",
-        ensEtat: "",
-        email: "",
-        nomUser: "",
-        mdp: "",
-      });
-      setShowToast(false);
-      navigate("/successRegistration");
-    } catch (error) {
-      console.error("Error adding student:", error);
+          // Réinitialiser les champs après l'insertion
+          setTeacherData({
+            matricule: "",
+            nom: "",
+            prenom: "",
+            dateNaissance: "",
+            lieuNaissance: "",
+            matiereEnseignee: "",
+            adresse: "",
+            ensEtat: "",
+            email: "",
+            nomUser: "",
+            mdp: "",
+          });
+          setShowToast(false);
+          navigate("/successRegistration");
+        } catch (error) {
+          console.error("Error adding student:", error);
+        }
+      }
     }
   };
 
