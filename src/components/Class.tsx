@@ -170,7 +170,7 @@ const Class = () => {
     <div className="container mt-5">
       <Menu />
       <br />
-      <h1 style={{ color: "#e3f2fd" }}>Gestion des classes</h1>
+      <h1 style={{ color: "#022634" }}>Gestion des classes</h1>
       {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
       {successMessage && (
         <div className="alert alert-success">{successMessage}</div>
@@ -179,7 +179,7 @@ const Class = () => {
         <label
           htmlFor="cycle"
           className="form-label"
-          style={{ color: "#e3f2fd" }}
+          style={{ color: "#022634" }}
         >
           Cycle
         </label>
@@ -204,7 +204,7 @@ const Class = () => {
         <label
           htmlFor="niveau"
           className="form-label"
-          style={{ color: "#e3f2fd" }}
+          style={{ color: "#022634" }}
         >
           Niveau
         </label>
@@ -217,7 +217,7 @@ const Class = () => {
           required
         />
       </div>
-      <div className="mb-3" style={{ color: "#e3f2fd" }}>
+      <div className="mb-3" style={{ color: "#022634" }}>
         <label htmlFor="numero" className="form-label">
           Numéro
         </label>
@@ -237,7 +237,7 @@ const Class = () => {
       <div className="col-md-12">
         {/* List of Classes section */}
         <div className="mt-4">
-          <h1 style={{ color: "#e3f2fd" }}>Liste des Classes</h1>
+          <h1 style={{ color: "#022634" }}>Liste des Classes</h1>
           <br />
           <div className="mb-3">
             <select

@@ -1,9 +1,9 @@
 import React from "react";
 import { Modal, Button, Form, Navbar, Nav } from "react-bootstrap";
-import logo from "../assets/logo1.png";
+import logo from "../assets/logo.png";
 const Menu = () => {
   return (
-    <Navbar style={{ backgroundColor: "#e3f2fd" }} expand="lg">
+    <Navbar style={{ backgroundColor: "#022634" }} expand="lg">
       <Navbar.Brand>
         <div className="logo">
           <img
@@ -17,16 +17,16 @@ const Menu = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto" style={{ color: "#022634" }}>
-          <Nav.Link href="#" style={{ color: "#022634" }}>
+          <Nav.Link href="#" style={{ color: "#e3f2fd" }}>
             Accueil
           </Nav.Link>
-          <Nav.Link href="#" style={{ color: "#022634" }}>
+          <Nav.Link href="#" style={{ color: "#e3f2fd" }}>
             Enseignant
           </Nav.Link>
-          <Nav.Link href="#" style={{ color: "#022634" }}>
+          <Nav.Link href="#" style={{ color: "#e3f2fd" }}>
             Étudiant
           </Nav.Link>
-          <Nav.Link href="#" style={{ color: "#022634" }}>
+          <Nav.Link href="#" style={{ color: "#e3f2fd" }}>
             Emploi du temps
           </Nav.Link>
         </Nav>
