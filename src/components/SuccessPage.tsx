@@ -18,10 +18,10 @@ const SuccessPage = () => {
           />
           <h1 className="mt-3">Inscription réussie !</h1>
           <p>
-            Votre inscription a été effectuée avec succès. votre compte sera
-            validé dans un délai de 3 jours, à ce moment, vous pouvez acceder à
-            la page de <a href="/"> connexion</a> pour se connecter à votre
-            compte.
+            Votre inscription a été effectuée avec succès. Vous recevrez un
+            e-mail indiquant que votre compte a été validé par l'administration
+            de l'école. À ce moment-là, vous pourrez accéder à la page de{" "}
+            <a href="/">connexion</a> pour vous connecter à votre compte.
           </p>
         </Col>
       </Row>

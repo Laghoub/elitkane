@@ -125,7 +125,7 @@ const StudentRegistration = () => {
 
   return (
     <div className="container mt-5">
-      <h1 style={{ color: "white" }}>Inscription "Etudiant"</h1>
+      <h1 style={{ color: "#022634" }}>Inscription "Etudiant"</h1>
       <br />
       <div
         className="card mb-3"
@@ -146,7 +146,7 @@ const StudentRegistration = () => {
           </p>
         </div>
       </div>
-      <h5 style={{ color: "#B3E5FC" }}>Les informations personnelles</h5>
+      <h5 style={{ color: "#022634" }}>Les informations personnelles</h5>
       <Form>
         <Row>
           <Col md={6}>
@@ -172,7 +172,7 @@ const StudentRegistration = () => {
               />
             </Form.Group>
             <br />
-            <p style={{ color: "#B3E5FC" }}>Date de naissance</p>
+            <p style={{ color: "#022634" }}>Date de naissance</p>
             <Form.Group controlId="dateNaissance">
               <Form.Control
                 type="date"
@@ -283,15 +283,15 @@ const StudentRegistration = () => {
             {/* Ajouter les autres champs ici */}
           </Col>
           <Col md={6}>
-            <h5 style={{ color: "#B3E5FC" }}>Les informations de connexion</h5>
+            <h5 style={{ color: "#022634" }}>Les informations de connexion</h5>
             <br />
             <i>
-              <p style={{ color: "white" }}>
+              <p style={{ color: "022634" }}>
                 Le nom d'utilisateur doit être constitué de la première lettre
                 de votre prénom suivie d'un tiret '_' suivi de votre nom. Par
                 exemple, pour un prénom Islem et un nom Bouadla, le nom
                 d'utilisateur serait :{" "}
-                <span style={{ color: "#B3E5FC" }}>
+                <span style={{ color: "#022634" }}>
                   <b>i_bouadla</b>
                 </span>
               </p>{" "}
@@ -339,7 +339,7 @@ const StudentRegistration = () => {
         <h5 style={{ color: "#F44336" }}>
           Assurez-vous que toutes les informations saisies sont correctes.
         </h5>
-        <h6 style={{ color: "white" }}>
+        <h6 style={{ color: "022634" }}>
           Veuillez bien noter vos informations de connexion afin de les utiliser
           dans la section 'connexion'.
         </h6>
