@@ -635,7 +635,7 @@ const Teacher = () => {
                     </button>
                   </div>
                 </div>
-
+                <br />
                 <table className="table">
                   <thead>
                     <tr>
@@ -817,6 +817,10 @@ const Teacher = () => {
               <div className="mt-4">
                 <h3>Liste finale</h3>
                 <br />
+                <p>
+                  Vous trouverez ici la liste complete des enseignant de l'école
+                  que vous avez validés.
+                </p>
                 <select
                   value={selectedClass}
                   onChange={(e) => setSelectedClass(e.target.value)}
@@ -844,7 +848,7 @@ const Teacher = () => {
                     </button>
                   </div>
                 </div>
-
+                <br />
                 <table className="table">
                   <thead>
                     <tr>
@@ -853,6 +857,7 @@ const Teacher = () => {
                       <th>Prénom</th>
                       <th>Date de Naissance</th>
                       <th>Classe</th>
+                      <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -889,6 +894,10 @@ const Teacher = () => {
         <TabPane tabId="affectation">
           <div className="container mt-5">
             <h1>Gestion des affectations</h1>
+            <p>
+              Afin d'affecter un enseignant à une classe, veuillez sélectionner
+              le nom de l'enseignant ainsi que la clacce associée.
+            </p>
             {errorMessage && (
               <div className="alert alert-danger">{errorMessage}</div>
             )}
@@ -993,7 +1002,6 @@ const Teacher = () => {
                     <th>prénom</th>
                     <th>Matiere</th>
                     <th>Classe</th>
-                    <th>Actions</th>
                   </tr>
                 </thead>
 
