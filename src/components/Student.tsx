@@ -568,7 +568,7 @@ const Student = () => {
                     </button>
                   </div>
                 </div>
-
+                <br />
                 <table className="table">
                   <thead>
                     <tr>
@@ -792,7 +792,7 @@ const Student = () => {
                     </button>
                   </div>
                 </div>
-
+                <br />
                 <table className="table">
                   <thead>
                     <tr>

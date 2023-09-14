@@ -68,6 +68,8 @@ const Login = () => {
     } else {
       if (localStorage.getItem("role") == "étudiant") {
         navigate("/successRegistration");
+      } else {
+        navigate("/home");
       }
     }
   }
