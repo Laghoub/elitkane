@@ -26,6 +26,11 @@ const ParentRegistration = () => {
     mdp: "",
   });
 
+  const [statutDivorce, setStatutDivorce] = useState([
+    "Divorcés",
+    "Non divorcé",
+  ]);
+
   const handleChange = (e: any) => {
     const { name, value } = e.target;
 
@@ -142,16 +147,79 @@ const ParentRegistration = () => {
               />
             </Form.Group>
             <br />
-
+            <Form.Group controlId="telephoneMere">
+              <Form.Control
+                type="number"
+                name="telephoneMere"
+                placeholder="N°Tél de la mere "
+                value={parentData.telephoneMere}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
             <br />
-
+            <Form.Group controlId="adresse">
+              <Form.Control
+                type="text"
+                name="adresse"
+                placeholder="Votre adresse"
+                value={parentData.adresse}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
             <br />
-
+            <Form.Group controlId="statutDivorce">
+              <Form.Control
+                type="text"
+                name="adresse"
+                placeholder="Votre adresse"
+                value={parentData.adresse}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
             <br />
-
+            <Form.Group controlId="statutDivorce">
+              <Form.Control
+                as="select"
+                name="statutDivorce"
+                value={parentData.statutDivorce}
+                onChange={handleChange}
+                required
+              >
+                <option value="" disabled>
+                  situation des parents
+                </option>
+                {statutDivorce.map((statut) => (
+                  <option key={statut} value={statut}>
+                    {statut}
+                  </option>
+                ))}
+              </Form.Control>
+            </Form.Group>
             <br />
-
-            {/* Ajouter les autres champs ici */}
+            <Form.Group controlId="prenomsEnfant">
+              <Form.Control
+                type="text"
+                name="prenomsEnfant"
+                placeholder="Les noms de vos enfants séparés par une virgule"
+                value={parentData.prenomsEnfant}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <br />
+            <Form.Group controlId="mail">
+              <Form.Control
+                type="text"
+                name="mail"
+                placeholder="Votre adresse mail"
+                value={parentData.mail}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
           </Col>
 
           <Col md={6}>
@@ -170,7 +238,27 @@ const ParentRegistration = () => {
             </i>
 
             <br />
-
+            <Form.Group controlId="username">
+              <Form.Control
+                type="text"
+                name="username"
+                placeholder="Nom d'utilisateur"
+                value={parentData.username}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <br />
+            <Form.Group controlId="mdp">
+              <Form.Control
+                type="password"
+                name="mdp"
+                placeholder="Mot de passe"
+                value={parentData.mdp}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
             <br />
             <Form.Group controlId="confirmPassword">
               <Form.Control
