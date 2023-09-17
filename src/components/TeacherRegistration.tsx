@@ -47,6 +47,7 @@ const TeacherRegistration = () => {
     matiereEnseignee: "",
     adresse: "",
     ensEtat: "",
+    numTel: "",
     email: "",
     nomUser: "",
     mdp: "",
@@ -95,6 +96,7 @@ const TeacherRegistration = () => {
             matiereEnseignee: "",
             adresse: "",
             ensEtat: "",
+            numTel: "",
             email: "",
             nomUser: "",
             mdp: "",
@@ -218,6 +220,18 @@ const TeacherRegistration = () => {
                 name="email"
                 placeholder="Adresse mail"
                 value={teacherData.email}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <br />
+
+            <Form.Group controlId="numTel">
+              <Form.Control
+                type="number"
+                name="numTel"
+                placeholder="Numéro de Téléphone"
+                value={teacherData.numTel}
                 onChange={handleChange}
                 required
               />

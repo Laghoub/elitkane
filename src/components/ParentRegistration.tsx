@@ -16,6 +16,7 @@ const ParentRegistration = () => {
     matricule: "",
     nomPere: "",
     prenomPere: "",
+    nomPrenomMere: "",
     telephonePere: "",
     telephoneMere: "",
     adresse: "",
@@ -69,6 +70,7 @@ const ParentRegistration = () => {
             matricule: "",
             nomPere: "",
             prenomPere: "",
+            nomPrenomMere: "",
             telephonePere: "",
             telephoneMere: "",
             adresse: "",
@@ -136,6 +138,17 @@ const ParentRegistration = () => {
               />
             </Form.Group>
             <br />
+            <Form.Group controlId="nomPrenomMere">
+              <Form.Control
+                type="text"
+                name="nomPrenomMere"
+                placeholder="Nom et prénom de la mere"
+                value={parentData.nomPrenomMere}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <br />
             <Form.Group controlId="telephonePere">
               <Form.Control
                 type="number"
@@ -169,17 +182,7 @@ const ParentRegistration = () => {
               />
             </Form.Group>
             <br />
-            <Form.Group controlId="statutDivorce">
-              <Form.Control
-                type="text"
-                name="adresse"
-                placeholder="Votre adresse"
-                value={parentData.adresse}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-            <br />
+
             <Form.Group controlId="statutDivorce">
               <Form.Control
                 as="select"
