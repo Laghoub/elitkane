@@ -10,6 +10,7 @@ import StudentRegistration from "./StudentRegistration";
 import SuccessPage from "./SuccessPage";
 import TeacherRegistration from "./TeacherRegistration";
 import UnderDevelopmentPage from "./UnderDevelopmentPage";
+import ParentRegistration from "./ParentRegistration";
 
 const AppRouter: React.FC = () => {
   const isLoggedIn = localStorage.getItem("token");
@@ -38,7 +39,7 @@ const AppRouter: React.FC = () => {
         <Route path="/studentRegistration" element={<StudentRegistration />} />
         <Route path="/teacherRegistration" element={<TeacherRegistration />} />
         <Route path="/successRegistration" element={<SuccessPage />} />
-        <Route path="/waiting" element={<UnderDevelopmentPage />} />
+        <Route path="/parentRegistration" element={<ParentRegistration />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

@@ -142,7 +142,7 @@ const Login = () => {
               Inscription étudiant
             </Link>
             <br />
-            <Link to="/waiting" style={{ color: "white" }}>
+            <Link to="/parentRegistration" style={{ color: "white" }}>
               Inscription parent
             </Link>
           </div>
