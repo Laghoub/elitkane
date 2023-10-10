@@ -13,7 +13,7 @@ interface props {
 const HomePage = () => {
   const navigate = useNavigate();
   const handleLogout = () => {
-    //localStorage.removeItem("token");
+    localStorage.removeItem("token");
     localStorage.setItem("isLoggedIn", "false");
     navigate("/");
   };
