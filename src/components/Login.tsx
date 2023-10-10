@@ -38,8 +38,8 @@ const Login = () => {
         localStorage.setItem("isLoggedIn", "true");
         localStorage.setItem("name", data.data.nom);
         localStorage.setItem("role", data.data.role);
-        localStorage.setItem("token", data.token);
-        setToken(data.token);
+        //localStorage.setItem("token", data.token);
+        //setToken(data.token);
         return true;
       } else {
         setErrorMessage("Les informations de connexion sont incorrectes");

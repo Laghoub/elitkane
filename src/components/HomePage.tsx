@@ -6,6 +6,7 @@ import classes from "../assets/classes.jpeg";
 import teacher from "../assets/teacher.jpeg";
 import edt from "../assets/edt.jpeg";
 import profile from "../assets/profile.png";
+import Cookies from "js-cookie";
 interface props {
   children: ReactNode;
 }
@@ -13,7 +14,7 @@ interface props {
 const HomePage = () => {
   const navigate = useNavigate();
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    Cookies.remove("token");
     localStorage.setItem("isLoggedIn", "false");
     navigate("/");
   };
