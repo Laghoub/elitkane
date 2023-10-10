@@ -19,10 +19,8 @@ const AppRouter: React.FC = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route
-          path="/home"
-          element={isLoggedIn ? <HomePage /> : <Navigate to="/" />}
-        />
+        <Route path="/home" element={<HomePage />} />
+
         <Route
           path="/class"
           element={isLoggedIn ? <Class /> : <Navigate to="/" />}

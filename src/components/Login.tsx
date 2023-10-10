@@ -25,7 +25,7 @@ const Login = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            email: email,
+            email,
             mdp: password,
           }),
         }
@@ -42,9 +42,7 @@ const Login = () => {
         setToken(data.token);
         return true;
       } else {
-        setLoginSuccess(false);
         setErrorMessage("Les informations de connexion sont incorrectes");
-        return false;
       }
     } catch (error) {
       console.error("Login error:", error);
@@ -62,6 +60,19 @@ const Login = () => {
   const isAuthenticated = () => {
     return !!getToken();
   };
+
+  if (loginSuccess) {
+    if (localStorage.getItem("role") == "fondatrice") {
+      console.log("sucssess");
+      navigate("/home");
+    } else {
+      if (localStorage.getItem("role") == "étudiant") {
+        navigate("/successRegistration");
+      } else {
+        navigate("/home");
+      }
+    }
+  }
 
   return (
     <div>
@@ -111,19 +122,13 @@ const Login = () => {
             </div>
             <br />
             <div className="form-group">
-              {loginSuccess ? (
-                <Link to="/home" className="btn btn-primary">
-                  Se connecter
-                </Link>
-              ) : (
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={handleLogin}
-                >
-                  Se connecter
-                </button>
-              )}
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={handleLogin}
+              >
+                Se connecter
+              </button>
             </div>
             <br />
             <p style={{ color: "white" }}>
