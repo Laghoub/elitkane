@@ -3,7 +3,12 @@ import Login from "./components/Login";
 import Alert from "./components/HomePage";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Message from "./Message";
+import { useState, ReactNode, useEffect } from "react";
 const App: React.FC = () => {
+  useEffect(() => {
+    // Recharge automatiquement la page lorsque l'utilisateur entre sur le site
+    window.location.reload();
+  }, []);
   return (
     <AppRouter />
 

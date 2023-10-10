@@ -16,7 +16,7 @@ const HomePage = () => {
   const handleLogout = () => {
     Cookies.remove("token");
     localStorage.setItem("isLoggedIn", "false");
-    navigate("/");
+    navigate("/login");
   };
 
   const name = localStorage.getItem("name");
