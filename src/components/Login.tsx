@@ -40,7 +40,9 @@ const Login = () => {
         localStorage.setItem("role", data.data.role);
         localStorage.setItem("token", data.token);
         setToken(data.token);
+        console.log("avant la red");
         navigate("/home");
+        console.log("aprés la red");
         return true;
       } else {
         setErrorMessage("Les informations de connexion sont incorrectes");
