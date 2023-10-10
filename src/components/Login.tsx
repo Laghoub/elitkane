@@ -4,6 +4,7 @@ import Alert from "./HomePage";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
+import Cookies from "js-cookie";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -11,9 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [token, setToken] = useState<string | null>(
-    localStorage.getItem("token")
-  );
+  const [token, setToken] = useState("");
 
   const handleLogin = async () => {
     try {
@@ -34,6 +33,7 @@ const Login = () => {
       const data = await response.json();
 
       if (data.success === 1) {
+        Cookies.set("token", data.token, { expires: 7 });
         setLoginSuccess(true);
         localStorage.setItem("isLoggedIn", "true");
         localStorage.setItem("name", data.data.nom);

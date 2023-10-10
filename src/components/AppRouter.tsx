@@ -11,6 +11,7 @@ import SuccessPage from "./SuccessPage";
 import TeacherRegistration from "./TeacherRegistration";
 import UnderDevelopmentPage from "./UnderDevelopmentPage";
 import ParentRegistration from "./ParentRegistration";
+import Cookies from "js-cookie";
 
 const AppRouter: React.FC = () => {
   const tokenLogin = localStorage.getItem("token");
@@ -22,19 +23,19 @@ const AppRouter: React.FC = () => {
         <Route path="/" element={<Login />} />
         <Route
           path="/home"
-          element={tokenLogin && isLogedIn ? <HomePage /> : <Navigate to="/" />}
+          element={Cookies.get("token") ? <HomePage /> : <Navigate to="/" />}
         />
         <Route
           path="/class"
-          element={isLogedIn ? <Class /> : <Navigate to="/" />}
+          element={tokenLogin ? <Class /> : <Navigate to="/" />}
         />
         <Route
           path="/student"
-          element={isLogedIn ? <Student /> : <Navigate to="/" />}
+          element={tokenLogin ? <Student /> : <Navigate to="/" />}
         />
         <Route
           path="/teacher"
-          element={isLogedIn ? <Teacher /> : <Navigate to="/" />}
+          element={tokenLogin ? <Teacher /> : <Navigate to="/" />}
         />
 
         <Route path="/studentRegistration" element={<StudentRegistration />} />
