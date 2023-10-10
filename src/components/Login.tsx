@@ -40,12 +40,11 @@ const Login = () => {
         localStorage.setItem("role", data.data.role);
         localStorage.setItem("token", data.token);
         setToken(data.token);
-        console.log("avant la red");
-        navigate("/home");
-        console.log("aprés la red");
         return true;
       } else {
+        setLoginSuccess(false);
         setErrorMessage("Les informations de connexion sont incorrectes");
+        return false;
       }
     } catch (error) {
       console.error("Login error:", error);
@@ -112,13 +111,19 @@ const Login = () => {
             </div>
             <br />
             <div className="form-group">
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={handleLogin}
-              >
-                Se connecter
-              </button>
+              {loginSuccess ? (
+                <Link to="/home" className="btn btn-primary">
+                  Se connecter
+                </Link>
+              ) : (
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={handleLogin}
+                >
+                  Se connecter
+                </button>
+              )}
             </div>
             <br />
             <p style={{ color: "white" }}>
