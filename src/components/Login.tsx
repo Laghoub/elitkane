@@ -40,6 +40,7 @@ const Login = () => {
         localStorage.setItem("role", data.data.role);
         localStorage.setItem("token", data.token);
         setToken(data.token);
+        navigate("/home");
         return true;
       } else {
         setErrorMessage("Les informations de connexion sont incorrectes");
@@ -60,10 +61,6 @@ const Login = () => {
   const isAuthenticated = () => {
     return !!getToken();
   };
-
-  if (loginSuccess) {
-    navigate("/home");
-  }
 
   return (
     <div>
