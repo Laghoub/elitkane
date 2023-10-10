@@ -1,10 +1,11 @@
-import React, { useState, ReactNode } from "react";
+import React, { useState, ReactNode, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Alert from "./HomePage";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import Cookies from "js-cookie";
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -13,6 +14,10 @@ const Login = () => {
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [token, setToken] = useState("");
+  const date = new Date();
+  const [accessData, setAccessData] = useState({
+    dateaccess: date.toDateString,
+  });
 
   const handleLogin = async () => {
     try {
@@ -33,7 +38,7 @@ const Login = () => {
       const data = await response.json();
 
       if (data.success === 1) {
-        Cookies.set("token", data.token, { expires: 7 });
+        Cookies.set("token", data.token, { expires: 30 });
         setLoginSuccess(true);
         localStorage.setItem("isLoggedIn", "true");
         localStorage.setItem("name", data.data.nom);
@@ -73,6 +78,24 @@ const Login = () => {
       }
     }
   }
+
+  const access = async (e: any) => {
+    try {
+      const response = await axios.post(
+        "https://elitkane.onrender.com/api/access",
+        accessData
+      );
+      console.log("date added:", response.data);
+
+      // Réinitialiser les champs après l'insertion
+    } catch (error) {
+      console.error("Error adding student:", error);
+    }
+  };
+
+  useEffect(() => {
+    access;
+  });
 
   return (
     <div>
