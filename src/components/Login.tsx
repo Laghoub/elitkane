@@ -25,7 +25,7 @@ const Login = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            email,
+            email: email,
             mdp: password,
           }),
         }
@@ -62,16 +62,7 @@ const Login = () => {
   };
 
   if (loginSuccess) {
-    if (localStorage.getItem("role") == "fondatrice") {
-      console.log("sucssess");
-      navigate("/home");
-    } else {
-      if (localStorage.getItem("role") == "étudiant") {
-        navigate("/successRegistration");
-      } else {
-        navigate("/home");
-      }
-    }
+    navigate("/home");
   }
 
   return (
