@@ -14,7 +14,7 @@ import ParentRegistration from "./ParentRegistration";
 import Cookies from "js-cookie";
 
 const AppRouter: React.FC = () => {
-  const tokenLogin = localStorage.getItem("token");
+  const tokenLogin = Cookies.get("token");
   const isLogedIn = localStorage.getItem("isLoggedIn");
 
   return (
@@ -24,9 +24,7 @@ const AppRouter: React.FC = () => {
 
         <Route
           path="/"
-          element={
-            Cookies.get("token") ? <HomePage /> : <Navigate to="/login" />
-          }
+          element={tokenLogin ? <HomePage /> : <Navigate to="/login" />}
         />
         <Route
           path="/class"
