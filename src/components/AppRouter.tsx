@@ -13,7 +13,8 @@ import UnderDevelopmentPage from "./UnderDevelopmentPage";
 import ParentRegistration from "./ParentRegistration";
 
 const AppRouter: React.FC = () => {
-  const isLoggedIn = localStorage.getItem("token");
+  const tokenLogin = localStorage.getItem("token");
+  const isLogedIn = localStorage.getItem("isLoggedIn");
 
   return (
     <BrowserRouter>
@@ -21,7 +22,7 @@ const AppRouter: React.FC = () => {
         <Route path="/" element={<Login />} />
         <Route
           path="/home"
-          element={isLoggedIn ? <HomePage /> : <Navigate to="/" />}
+          element={tokenLogin && isLogedIn ? <HomePage /> : <Navigate to="/" />}
         />
         <Route
           path="/class"
