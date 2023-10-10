@@ -13,7 +13,7 @@ import UnderDevelopmentPage from "./UnderDevelopmentPage";
 import ParentRegistration from "./ParentRegistration";
 
 const AppRouter: React.FC = () => {
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  const isLoggedIn = localStorage.getItem("token");
 
   return (
     <BrowserRouter>
