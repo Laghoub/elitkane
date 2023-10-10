@@ -13,14 +13,16 @@ import UnderDevelopmentPage from "./UnderDevelopmentPage";
 import ParentRegistration from "./ParentRegistration";
 
 const AppRouter: React.FC = () => {
-  const isLoggedIn = localStorage.getItem("token");
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/home" element={<HomePage />} />
-
+        <Route
+          path="/home"
+          element={isLoggedIn ? <HomePage /> : <Navigate to="/" />}
+        />
         <Route
           path="/class"
           element={isLoggedIn ? <Class /> : <Navigate to="/" />}
