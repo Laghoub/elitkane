@@ -21,9 +21,9 @@ const AppRouter: React.FC = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<HomePage />} />
+
         <Route
-          path="/home"
+          path="/"
           element={
             Cookies.get("token") ? <HomePage /> : <Navigate to="/login" />
           }
@@ -45,7 +45,7 @@ const AppRouter: React.FC = () => {
         <Route path="/teacherRegistration" element={<TeacherRegistration />} />
         <Route path="/successRegistration" element={<SuccessPage />} />
         <Route path="/parentRegistration" element={<ParentRegistration />} />
-        <Route path="*" element={<Navigate to="/home" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );

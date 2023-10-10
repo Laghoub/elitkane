@@ -64,12 +64,12 @@ const Login = () => {
   if (loginSuccess) {
     if (localStorage.getItem("role") == "fondatrice") {
       console.log("sucssess");
-      navigate("/home");
+      navigate("/");
     } else {
       if (localStorage.getItem("role") == "étudiant") {
         navigate("/successRegistration");
       } else {
-        navigate("/home");
+        navigate("/");
       }
     }
   }
