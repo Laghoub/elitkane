@@ -88,7 +88,17 @@ const StudentRegistration = () => {
       setErrorMessage("Les mots de passe ne correspondent pas.");
       return;
     } else {
-      if (!studentData) {
+      if (
+        studentData.nom == "" &&
+        studentData.prenom == "" &&
+        studentData.dateNaissance == "" &&
+        studentData.lieuNaissance == "" &&
+        studentData.classe == "" &&
+        studentData.nomUser == "" &&
+        studentData.mdp == "" &&
+        studentData.nomPreMere == "" &&
+        studentData.prenomPere == ""
+      ) {
         setErrorMessage("Vous devez remplir tous les champs du formulaire");
       } else {
         try {

@@ -76,7 +76,14 @@ const TeacherRegistration = () => {
       setErrorMessage("Les mots de passe ne correspondent pas.");
       return;
     } else {
-      if (teacherData.nom == "" && teacherData.prenom == "") {
+      if (
+        teacherData.nom == "" &&
+        teacherData.prenom == "" &&
+        teacherData.dateNaissance == "" &&
+        teacherData.matiereEnseignee == "" &&
+        teacherData.nomUser == "" &&
+        teacherData.mdp == ""
+      ) {
         setErrorMessage("Vous devez remplir tous les champs du formulaire");
       } else {
         try {
