@@ -47,7 +47,9 @@ const Login = () => {
         //setToken(data.token);
         return true;
       } else {
-        setErrorMessage("Les informations de connexion sont incorrectes");
+        setErrorMessage(
+          "Vous avez effectué l'inscription, mais votre compte n'a pas encore été validé. Vous pourrez accéder à votre compte à partir du 23 octobre."
+        );
       }
     } catch (error) {
       console.error("Login error:", error);
