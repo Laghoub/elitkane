@@ -16,7 +16,7 @@ import TeacherHomePage from "./Teacher/TeacherHomePage";
 
 const AppRouter: React.FC = () => {
   const tokenLogin = Cookies.get("token");
-  const isLogedIn = localStorage.getItem("isLoggedIn");
+  const role = localStorage.getItem("role");
 
   return (
     <BrowserRouter>
@@ -25,19 +25,43 @@ const AppRouter: React.FC = () => {
 
         <Route
           path="/"
-          element={tokenLogin ? <HomePage /> : <Navigate to="/login" />}
+          element={
+            tokenLogin && role === "fondatrice" ? (
+              <HomePage />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         />
         <Route
           path="/class"
-          element={tokenLogin ? <Class /> : <Navigate to="/" />}
+          element={
+            tokenLogin && role === "fondatrice" ? (
+              <Class />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
         />
         <Route
           path="/student"
-          element={tokenLogin ? <Student /> : <Navigate to="/" />}
+          element={
+            tokenLogin && role === "fondatrice" ? (
+              <Student />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
         />
         <Route
           path="/teacher"
-          element={tokenLogin ? <Teacher /> : <Navigate to="/" />}
+          element={
+            tokenLogin && role === "fondatrice" ? (
+              <Teacher />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
         />
 
         <Route path="/studentRegistration" element={<StudentRegistration />} />
@@ -45,7 +69,17 @@ const AppRouter: React.FC = () => {
         <Route path="/successRegistration" element={<SuccessPage />} />
         <Route path="/parentRegistration" element={<ParentRegistration />} />
 
-        <Route path="/teacherhome" element={<TeacherHomePage />} />
+        <Route
+          path="/teacherhome"
+          element={
+            tokenLogin && role === "enseignant" ? (
+              <TeacherHomePage />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
+        />
+
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
