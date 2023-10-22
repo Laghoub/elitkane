@@ -41,6 +41,7 @@ const Login = () => {
         Cookies.set("token", data.token, { expires: 30 });
         setLoginSuccess(true);
         localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("matricule", data.data.matricule);
         localStorage.setItem("name", data.data.nom);
         localStorage.setItem("role", data.data.role);
         //localStorage.setItem("token", data.token);

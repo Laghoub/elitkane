@@ -12,6 +12,7 @@ import TeacherRegistration from "./TeacherRegistration";
 import UnderDevelopmentPage from "./UnderDevelopmentPage";
 import ParentRegistration from "./ParentRegistration";
 import Cookies from "js-cookie";
+import TeacherHomePage from "./Teacher/TeacherHomePage";
 
 const AppRouter: React.FC = () => {
   const tokenLogin = Cookies.get("token");
@@ -43,6 +44,8 @@ const AppRouter: React.FC = () => {
         <Route path="/teacherRegistration" element={<TeacherRegistration />} />
         <Route path="/successRegistration" element={<SuccessPage />} />
         <Route path="/parentRegistration" element={<ParentRegistration />} />
+
+        <Route path="/teacherhome" element={<TeacherHomePage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
