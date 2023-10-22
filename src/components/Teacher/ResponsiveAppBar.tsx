@@ -12,6 +12,8 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 const pages = [
   "Accueil",
@@ -24,6 +26,7 @@ const pages = [
 const settings = ["Mon compte", "Déconnecter"];
 
 function ResponsiveAppBar() {
+  const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -40,6 +43,13 @@ function ResponsiveAppBar() {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+  };
+
+  const handleLogout = () => {
+    Cookies.remove("token");
+    localStorage.setItem("isLoggedIn", "false");
+    localStorage.removeItem("role");
+    navigate("/login");
   };
 
   const handleCloseUserMenu = () => {
