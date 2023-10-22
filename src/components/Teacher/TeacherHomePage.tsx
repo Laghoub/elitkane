@@ -7,9 +7,6 @@ const TeacherHomePage = () => {
   return (
     <div>
       <ResponsiveAppBar />;
-      <Typography variant="h6" component="div">
-        <span style={{ color: "black" }}>Bienvenue !</span>{" "}
-      </Typography>
       <InfoTeacher />
     </div>
   );

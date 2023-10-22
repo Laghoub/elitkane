@@ -16,7 +16,12 @@ const InfoTeacher = () => {
     email: string;
   };
 
+  type ClassType = {
+    idClasse: string;
+  };
+
   const [teacherList, setTeacherList] = useState([] as InfoType[]);
+  const [ClassList, setClassList] = useState([] as ClassType[]);
   const [loading, setLoading] = useState(true);
 
   const fetchTeacherList = async (matricule: string) => {
@@ -35,10 +40,27 @@ const InfoTeacher = () => {
     }
   };
 
+  const fetchClassList = async (matricule: string) => {
+    try {
+      const response = await axios.get(
+        `https://elitkane.onrender.com/api/teacher/classteacher/${matricule}`
+      );
+
+      if (response.data.success === 1) {
+        setClassList(response.data.data);
+      }
+      setLoading(false);
+    } catch (error) {
+      console.log("Error fetching Teachers:", error);
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     const matricule = localStorage.getItem("matricule");
     const matriculeValue = matricule !== null ? matricule : "";
     fetchTeacherList(matriculeValue);
+    fetchClassList(matriculeValue);
   }, []);
 
   return (
@@ -51,6 +73,12 @@ const InfoTeacher = () => {
         teacherList.map((teacher, index) => (
           <Card key={index} className="mb-2">
             <CardContent>
+              {/* Informations personnelles */}
+              <Typography variant="h4" component="div">
+                <span style={{ color: "black" }}>
+                  Informations personnelles
+                </span>
+              </Typography>
               <Typography variant="h6" component="div">
                 <span style={{ color: "black" }}>Matricule:</span>{" "}
                 <span style={{ color: "#2076d3" }}>{teacher.matricule}</span>
@@ -72,12 +100,6 @@ const InfoTeacher = () => {
                 </span>
               </Typography>
               <Typography variant="h6" component="div">
-                <span style={{ color: "black" }}>Date de naissance:</span>{" "}
-                <span style={{ color: "#2076d3" }}>
-                  {teacher.dateNaissance}
-                </span>
-              </Typography>
-              <Typography variant="h6" component="div">
                 <span style={{ color: "black" }}>Matière Enseignée:</span>{" "}
                 <span style={{ color: "#2076d3" }}>
                   {teacher.matiereEnseignee}
@@ -91,6 +113,20 @@ const InfoTeacher = () => {
           </Card>
         ))
       )}
+      {/* Carte pour la liste des classes */}
+      <Card className="mb-2">
+        <CardContent>
+          <Typography variant="h4" component="div">
+            <span style={{ color: "black" }}>Liste des Classes</span>
+          </Typography>
+          {ClassList.map((item, index) => (
+            <Typography key={index} variant="h6">
+              <span style={{ color: "black" }}>Classe {index + 1}:</span>{" "}
+              <span style={{ color: "#2076d3" }}>{item.idClasse}</span>
+            </Typography>
+          ))}
+        </CardContent>
+      </Card>
     </div>
   );
 };
