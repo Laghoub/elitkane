@@ -27,9 +27,9 @@ const AppRouter: React.FC = () => {
           element={
             tokenLogin ? (
               role === "fondatrice" ? (
-                <HomePage />
-              ) : (
                 <TeacherHomePage />
+              ) : (
+                <HomePage />
               )
             ) : (
               <Navigate to="/login" />
