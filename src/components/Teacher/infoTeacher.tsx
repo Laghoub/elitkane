@@ -79,6 +79,7 @@ const InfoTeacher = () => {
                   Informations personnelles
                 </span>
               </Typography>
+              <br />
               <Typography variant="h6" component="div">
                 <span style={{ color: "black" }}>Matricule:</span>{" "}
                 <span style={{ color: "#2076d3" }}>{teacher.matricule}</span>
@@ -119,6 +120,7 @@ const InfoTeacher = () => {
           <Typography variant="h4" component="div">
             <span style={{ color: "black" }}>Liste des Classes</span>
           </Typography>
+          <br />
           {ClassList.map((item, index) => (
             <Typography key={index} variant="h6">
               <span style={{ color: "black" }}>Classe {index + 1}:</span>{" "}
