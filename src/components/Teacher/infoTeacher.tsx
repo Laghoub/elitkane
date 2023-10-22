@@ -10,53 +10,54 @@ const InfoTeacher = () => {
     prenom: string;
     matricule: string;
   };
-  const [matricule, setMatricule] = useState("");
-  const [TeacherInfo, setTeacherInfo] = useState([] as InfoType[]);
 
-  const infoTeacher = async (matricule: string) => {
-    setMatricule("2324879520");
+  const [teacherList, setTeacherList] = useState([] as InfoType[]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchTeacherList = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/teacher/info/${matricule}`
+        "https://elitkane.onrender.com/api/teacher/info/2324879520"
       );
 
       if (response.data.success === 1) {
-        console.log(response.data.data);
-        setTeacherInfo(response.data.data);
+        setTeacherList(response.data.data);
       }
+      setLoading(false);
     } catch (error) {
-      console.error("Error fetching Teachers:", error);
+      console.log("Error fetching Teachers:", error);
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    infoTeacher(matricule);
+    fetchTeacherList();
   }, []);
 
   return (
     <div className="container mt-5">
-      <Card>
-        <CardContent>
-          {TeacherInfo ? (
-            <div>
+      {loading ? (
+        <Typography variant="body2" color="text.secondary">
+          Chargement en cours...
+        </Typography>
+      ) : (
+        teacherList.map((teacher, index) => (
+          <Card key={index} className="mb-2">
+            <CardContent>
               <Typography variant="h5" component="div">
-                Nom: {TeacherInfo[0].nom}
+                Nom: {teacher.nom}
               </Typography>
               <Typography variant="h6" component="div">
-                Prénom: {TeacherInfo[0].prenom}
+                Prénom: {teacher.prenom}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Matricule: {TeacherInfo[0].matricule}
+                Matricule: {teacher.matricule}
               </Typography>
               {/* Ajoutez d'autres informations ici */}
-            </div>
-          ) : (
-            <Typography variant="body2" color="text.secondary">
-              Chargement en cours...
-            </Typography>
-          )}
-        </CardContent>
-      </Card>
+            </CardContent>
+          </Card>
+        ))
+      )}
     </div>
   );
 };
