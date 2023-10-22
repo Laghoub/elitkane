@@ -80,17 +80,6 @@ const AppRouter: React.FC = () => {
           }
         />
 
-        <Route
-          path="/"
-          element={
-            tokenLogin && role === "enseignant" ? (
-              <TeacherHomePage />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
-
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

@@ -70,16 +70,7 @@ const Login = () => {
   };
 
   if (loginSuccess) {
-    if (localStorage.getItem("role") == "fondatrice") {
-      console.log("sucssess");
-      navigate("/");
-    } else {
-      if (localStorage.getItem("role") == "étudiant") {
-        navigate("/successRegistration");
-      } else {
-        navigate("/");
-      }
-    }
+    navigate("/");
   }
 
   const access = async (e: any) => {
