@@ -73,17 +73,19 @@ const InfoTeacher = () => {
               </Typography>
               <Typography variant="h6" component="div">
                 <span style={{ color: "black" }}>Date de naissance:</span>{" "}
-                <span style={{ color: "blue" }}>{teacher.dateNaissance}</span>
+                <span style={{ color: "#2076d3" }}>
+                  {teacher.dateNaissance}
+                </span>
               </Typography>
               <Typography variant="h6" component="div">
                 <span style={{ color: "black" }}>Matière Enseignée:</span>{" "}
-                <span style={{ color: "blue" }}>
+                <span style={{ color: "#2076d3" }}>
                   {teacher.matiereEnseignee}
                 </span>
               </Typography>
               <Typography variant="h6" component="div">
                 <span style={{ color: "black" }}>Email:</span>{" "}
-                <span style={{ color: "blue" }}>{teacher.email}</span>
+                <span style={{ color: "#2076d3" }}>{teacher.email}</span>
               </Typography>
             </CardContent>
           </Card>
