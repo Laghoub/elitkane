@@ -38,6 +38,17 @@ const AppRouter: React.FC = () => {
         />
 
         <Route
+          path="/teacherhome"
+          element={
+            tokenLogin && role === "enseignant" ? (
+              <TeacherHomePage />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+
+        <Route
           path="/class"
           element={
             tokenLogin && role === "fondatrice" ? (

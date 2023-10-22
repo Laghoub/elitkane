@@ -77,7 +77,7 @@ const Login = () => {
       if (localStorage.getItem("role") == "étudiant") {
         navigate("/successRegistration");
       } else {
-        navigate("/");
+        navigate("/teacherhome");
       }
     }
   }
