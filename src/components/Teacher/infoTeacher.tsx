@@ -31,7 +31,7 @@ const InfoTeacher = () => {
   };
 
   useEffect(() => {
-    const matricule = localStorage.getItem("matricule") || "";
+    const matricule = "2324304607";
     fetchTeacherList(matricule);
   }, []);
 
