@@ -51,37 +51,37 @@ const InfoTeacher = () => {
         teacherList.map((teacher, index) => (
           <Card key={index} className="mb-2">
             <CardContent>
-              <Typography variant="h5" component="div">
+              <Typography variant="h6" component="div">
+                <span style={{ color: "black" }}>Matricule:</span>{" "}
+                <span style={{ color: "#2076d3" }}>{teacher.matricule}</span>
+              </Typography>
+              <Typography variant="h6" component="div">
                 <span style={{ color: "black" }}>Nom:</span>{" "}
-                <span style={{ color: "blue" }}>{teacher.nom}</span>
+                <span style={{ color: "#2076d3" }}>{teacher.nom}</span>
               </Typography>
               <Typography variant="h6" component="div">
                 <span style={{ color: "black" }}>Prénom:</span>{" "}
-                <span style={{ color: "blue" }}>{teacher.prenom}</span>
+                <span style={{ color: "#2076d3" }}>{teacher.prenom}</span>
               </Typography>
-              <Typography variant="body2">
-                <span style={{ color: "black" }}>Matricule:</span>{" "}
-                <span style={{ color: "blue" }}>{teacher.matricule}</span>
+              <Typography variant="h6" component="div">
+                <span style={{ color: "black" }}>
+                  Date et lieu de naissance:
+                </span>{" "}
+                <span style={{ color: "#2076d3" }}>
+                  {teacher.dateNaissance + " à " + teacher.lieuNaissance}
+                </span>
               </Typography>
-              <Typography variant="body2">
-                <span style={{ color: "black" }}>Date de Naissance:</span>{" "}
+              <Typography variant="h6" component="div">
+                <span style={{ color: "black" }}>Date de naissance:</span>{" "}
                 <span style={{ color: "blue" }}>{teacher.dateNaissance}</span>
               </Typography>
-              <Typography variant="body2">
-                <span style={{ color: "black" }}>Lieu de Naissance:</span>{" "}
-                <span style={{ color: "blue" }}>{teacher.lieuNaissance}</span>
-              </Typography>
-              <Typography variant="body2">
-                <span style={{ color: "black" }}>Adresse:</span>{" "}
-                <span style={{ color: "blue" }}>{teacher.adresse}</span>
-              </Typography>
-              <Typography variant="body2">
+              <Typography variant="h6" component="div">
                 <span style={{ color: "black" }}>Matière Enseignée:</span>{" "}
                 <span style={{ color: "blue" }}>
                   {teacher.matiereEnseignee}
                 </span>
               </Typography>
-              <Typography variant="body2">
+              <Typography variant="h6" component="div">
                 <span style={{ color: "black" }}>Email:</span>{" "}
                 <span style={{ color: "blue" }}>{teacher.email}</span>
               </Typography>
