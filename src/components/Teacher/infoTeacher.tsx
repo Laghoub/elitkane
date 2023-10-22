@@ -14,10 +14,10 @@ const InfoTeacher = () => {
   const [teacherList, setTeacherList] = useState([] as InfoType[]);
   const [loading, setLoading] = useState(true);
 
-  const fetchTeacherList = async () => {
+  const fetchTeacherList = async (matricule: string) => {
     try {
       const response = await axios.get(
-        "https://elitkane.onrender.com/api/teacher/info/2324879520"
+        `https://elitkane.onrender.com/api/teacher/info/${matricule}`
       );
 
       if (response.data.success === 1) {
@@ -31,7 +31,8 @@ const InfoTeacher = () => {
   };
 
   useEffect(() => {
-    fetchTeacherList();
+    const matricule = localStorage.getItem("matricule") || "";
+    fetchTeacherList(matricule);
   }, []);
 
   return (
