@@ -21,6 +21,7 @@ const InfoTeacher = () => {
       );
 
       if (response.data.success === 1) {
+        console.log(response.data.data);
         setTeacherInfo(response.data.data);
       }
     } catch (error) {
