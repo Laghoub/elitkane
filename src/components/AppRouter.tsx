@@ -70,12 +70,12 @@ const AppRouter: React.FC = () => {
         <Route path="/parentRegistration" element={<ParentRegistration />} />
 
         <Route
-          path="/teacherhome"
+          path="/"
           element={
             tokenLogin && role === "enseignant" ? (
               <TeacherHomePage />
             ) : (
-              <Navigate to="/" />
+              <Navigate to="/login" />
             )
           }
         />
