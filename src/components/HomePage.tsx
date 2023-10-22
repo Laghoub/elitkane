@@ -16,7 +16,6 @@ const HomePage = () => {
   const handleLogout = () => {
     Cookies.remove("token");
     localStorage.setItem("isLoggedIn", "false");
-    localStorage.removeItem("matricule");
     navigate("/login");
   };
 
