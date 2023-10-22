@@ -31,8 +31,9 @@ const InfoTeacher = () => {
   };
 
   useEffect(() => {
-    const matricule = "2324304607";
-    fetchTeacherList(matricule);
+    const matricule = localStorage.getItem("matricule");
+    const matriculeValue = matricule !== null ? matricule : ""; // Utilisez une valeur par défaut (chaîne vide) si matricule est null
+    fetchTeacherList(matriculeValue);
   }, []);
 
   return (
