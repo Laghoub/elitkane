@@ -81,12 +81,12 @@ const AppRouter: React.FC = () => {
         />
 
         <Route
-          path="*"
+          path="/"
           element={
             tokenLogin && role === "enseignant" ? (
               <TeacherHomePage />
             ) : (
-              <Navigate to="/teacherhome" />
+              <Navigate to="/login" />
             )
           }
         />
