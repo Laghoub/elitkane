@@ -17,7 +17,7 @@ const InfoTeacher = () => {
   const fetchTeacherList = async (matricule: string) => {
     try {
       const response = await axios.get(
-        `https://elitkane.onrender.com/api/teacher/info/2324304607`
+        `https://elitkane.onrender.com/api/teacher/info/${matricule}`
       );
 
       if (response.data.success === 1) {
