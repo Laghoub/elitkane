@@ -83,7 +83,7 @@ const AppRouter: React.FC = () => {
         <Route path="/teacherRegistration" element={<TeacherRegistration />} />
         <Route path="/successRegistration" element={<SuccessPage />} />
         <Route path="/parentRegistration" element={<ParentRegistration />} />
-
+        <Route path="/underdev" element={<UnderDevelopmentPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

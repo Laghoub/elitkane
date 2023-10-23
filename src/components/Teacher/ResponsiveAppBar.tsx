@@ -52,8 +52,20 @@ function ResponsiveAppBar() {
     navigate("/login");
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
+  const handleCloseUserMenu = () => {};
+
+  const handleNavigation = (page: string) => {
+    switch (page) {
+      case "Emploi du temps":
+        navigate("/underdev");
+        break;
+      case "Liste des étudiants":
+        navigate("/underdev");
+        break;
+      // Ajoutez d'autres cas pour d'autres pages
+      default:
+        break;
+    }
   };
 
   return (
@@ -109,7 +121,7 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page} onClick={() => handleNavigation(page)}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -138,7 +150,7 @@ function ResponsiveAppBar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => handleNavigation(page)}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page}

@@ -16,9 +16,6 @@ const TeacherHomePage = () => {
   return (
     <div>
       <ResponsiveAppBar />;
-      <button onClick={handleLogout} className="btn btn-danger">
-        Déconnexion
-      </button>
       <InfoTeacher />
     </div>
   );

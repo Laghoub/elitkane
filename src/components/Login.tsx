@@ -115,7 +115,7 @@ const Login = () => {
             <b>
               <p style={{ color: "white" }}>
                 Plateforme web développée par: LAGHOUB Nassim
-                <p>elitkane.web@gmail.com | Touts droits réservés</p>
+                <p>elitkane.web@gmail.com | Tous droits réservés</p>
               </p>
             </b>
           </div>
