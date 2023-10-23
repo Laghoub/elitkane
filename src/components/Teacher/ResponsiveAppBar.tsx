@@ -62,6 +62,15 @@ function ResponsiveAppBar() {
       case "Liste des étudiants":
         navigate("/underdev");
         break;
+      case "Notes":
+        navigate("/underdev");
+        break;
+      case "Absences":
+        navigate("/underdev");
+        break;
+      case "Remarques":
+        navigate("/underdev");
+        break;
       // Ajoutez d'autres cas pour d'autres pages
       default:
         break;
