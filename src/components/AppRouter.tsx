@@ -13,6 +13,7 @@ import UnderDevelopmentPage from "./UnderDevelopmentPage";
 import ParentRegistration from "./ParentRegistration";
 import Cookies from "js-cookie";
 import TeacherHomePage from "./Teacher/TeacherHomePage";
+import StudentHomePage from "./Student/StudentHomePage";
 
 const AppRouter: React.FC = () => {
   const tokenLogin = Cookies.get("token");
@@ -28,6 +29,8 @@ const AppRouter: React.FC = () => {
             tokenLogin ? (
               role === "fondatrice" ? (
                 <HomePage />
+              ) : role === "étudiant" ? (
+                <StudentHomePage />
               ) : (
                 <TeacherHomePage />
               )
@@ -42,6 +45,17 @@ const AppRouter: React.FC = () => {
           element={
             tokenLogin && role === "enseignant" ? (
               <TeacherHomePage />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+
+        <Route
+          path="/studenthome"
+          element={
+            tokenLogin && role === "étudiant" ? (
+              <StudentHomePage />
             ) : (
               <Navigate to="/login" />
             )
