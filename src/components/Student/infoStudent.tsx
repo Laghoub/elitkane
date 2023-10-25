@@ -13,7 +13,7 @@ const InfoStudent = () => {
     lieuNaissance: string;
     classe: string;
     filiere: string;
-    email: string;
+    mail: string;
   };
 
   const [studentList, setStudentList] = useState([] as InfoType[]);
@@ -86,7 +86,7 @@ const InfoStudent = () => {
               </Typography>
               <Typography variant="h6" component="div">
                 <span style={{ color: "black" }}>Email:</span>{" "}
-                <span style={{ color: "#2076d3" }}>{student.email}</span>
+                <span style={{ color: "#2076d3" }}>{student.mail}</span>
               </Typography>
             </CardContent>
           </Card>
