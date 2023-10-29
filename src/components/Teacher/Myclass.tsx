@@ -85,7 +85,7 @@ const Myclass = () => {
               <label>Choisir une classe</label>
               <select
                 className="form-control"
-                value={selectedClass}
+                value="1AL1"
                 onChange={handleClassChange}
               >
                 {classes.map((classe: any) => (
