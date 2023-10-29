@@ -76,6 +76,8 @@ const Myclass = () => {
       <ResponsiveAppBar />
       <div className="container mt-4">
         <h1>Tableau de bord de l'enseignant</h1>
+        <br />
+        <h2>Mes étudiants</h2>
         <div className="row">
           <div className="col-md-4">
             <Form.Group controlId="selectedClass">
@@ -97,6 +99,7 @@ const Myclass = () => {
               </Form.Control>
             </Form.Group>
           </div>
+          <br />
           <div className="col-md-4">
             <button className="btn btn-primary" onClick={handleValider}>
               Valider
