@@ -20,23 +20,24 @@ const Myclass = () => {
     numero: string;
     idClasse: string;
   };
+  type studentType = {
+    matricule: string;
+    nom: string;
+    prenom: string;
+    dateNaissance: string;
+    lieuNaissance: string;
+    classe: string;
+    filiere: string;
+    adresse: string;
+    prenomPere: string;
+    nomPreMere: string;
+    mail: string;
+    nomUser: string;
+    mdp: string;
+  };
   const [classes, setClasses] = useState([] as ClassType[]);
   const [selectedClass, setSelectedClass] = useState("");
-  const [students, setStudents] = useState({
-    matricule: "",
-    nom: "",
-    prenom: "",
-    dateNaissance: "",
-    lieuNaissance: "",
-    classe: "",
-    filiere: "",
-    adresse: "",
-    prenomPere: "",
-    nomPreMere: "",
-    mail: "",
-    nomUser: "",
-    mdp: "",
-  });
+  const [students, setStudents] = useState([] as studentType[]);
   const matricule = localStorage.getItem("matricule");
 
   useEffect(() => {
@@ -58,8 +59,7 @@ const Myclass = () => {
     setSelectedClass(selectedClassId);
 
     // Récupérez la liste des étudiants pour la classe sélectionnée
-    {
-      /*
+
     axios
       .get(`https://elitkane.onrender.com/api/student/class/${selectedClassId}`)
       .then((response) => {
@@ -68,49 +68,56 @@ const Myclass = () => {
       .catch((error) => {
         console.error("Erreur de chargement des étudiants :", error);
       });
-
-    */
-    }
   };
 
   return (
     <div>
       <ResponsiveAppBar />
-      <h1>Tableau de bord de l'enseignant</h1>
-      <FormControl>
-        <InputLabel>Choisir une classe</InputLabel>
-        <Select value={selectedClass} onChange={handleClassChange}>
-          {classes.map((classe: any) => (
-            <MenuItem key={classe.idClasse} value={classe.idClasse}>
-              {classe.idClasse}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-      {/*
-      <TableContainer>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Nom</TableCell>
-              <TableCell>Prénom</TableCell>
-              <TableCell>Date de naissance</TableCell>
-              <TableCell>Email</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {students.map((student: any) => (
-              <TableRow key={student.id}>
-                <TableCell>{student.nom}</TableCell>
-                <TableCell>{student.prenom}</TableCell>
-                <TableCell>{student.dateNaissance}</TableCell>
-                <TableCell>{student.email}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-            */}
+      <div className="container mt-4">
+        <h1>Tableau de bord de l'enseignant</h1>
+        <div className="row">
+          <div className="col-md-4">
+            <div className="form-group">
+              <label>Choisir une classe</label>
+              <select
+                className="form-control"
+                value={selectedClass}
+                onChange={handleClassChange}
+              >
+                {classes.map((classe: any) => (
+                  <option key={classe.idClasse} value={classe.idClasse}>
+                    {classe.idClasse}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-12">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th scope="col">Nom</th>
+                  <th scope="col">Prénom</th>
+                  <th scope="col">Date de naissance</th>
+                  <th scope="col">Email</th>
+                </tr>
+              </thead>
+              <tbody>
+                {students.map((student: any) => (
+                  <tr key={student.id}>
+                    <td>{student.nom}</td>
+                    <td>{student.prenom}</td>
+                    <td>{student.dateNaissance}</td>
+                    <td>{student.email}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
