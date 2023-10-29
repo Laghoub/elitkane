@@ -13,9 +13,30 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 
 const Myclass = () => {
-  const [classes, setClasses] = useState([]);
+  type ClassType = {
+    matricule: string;
+    cycle: string;
+    niveau: string;
+    numero: string;
+    idClasse: string;
+  };
+  const [classes, setClasses] = useState([] as ClassType[]);
   const [selectedClass, setSelectedClass] = useState("");
-  const [students, setStudents] = useState([]);
+  const [students, setStudents] = useState({
+    matricule: "",
+    nom: "",
+    prenom: "",
+    dateNaissance: "",
+    lieuNaissance: "",
+    classe: "",
+    filiere: "",
+    adresse: "",
+    prenomPere: "",
+    nomPreMere: "",
+    mail: "",
+    nomUser: "",
+    mdp: "",
+  });
   const matricule = localStorage.getItem("matricule");
 
   useEffect(() => {
@@ -25,7 +46,7 @@ const Myclass = () => {
         `https://elitkane.onrender.com/api/teacher/classteacher/${matricule}`
       )
       .then((response) => {
-        setClasses(response.data);
+        setClasses(response.data.data);
       })
       .catch((error) => {
         console.error("Erreur de chargement des classes :", error);
