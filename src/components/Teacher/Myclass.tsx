@@ -57,14 +57,17 @@ const Myclass = () => {
   const handleClassChange = (event: any) => {
     const selectedClassId = event.target.value as string;
     setSelectedClass(selectedClassId);
+    console.log("Classe sélectionnée :", selectedClassId);
 
     // Récupérez la liste des étudiants pour la classe sélectionnée
 
     axios
-      .get(`https://elitkane.onrender.com/api/student/class/4AM1`)
+      .get(`https://elitkane.onrender.com/api/student/class/${selectedClassId}`)
       .then((response) => {
         setStudents(response.data.data);
+        console.log(students);
       })
+
       .catch((error) => {
         console.error("Erreur de chargement des étudiants :", error);
       });
