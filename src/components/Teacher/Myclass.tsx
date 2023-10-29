@@ -88,7 +88,7 @@ const Myclass = () => {
               <select
                 className="form-control"
                 value={selectedClass}
-                onChange={handleClassChange}
+                onChange={(e) => setSelectedClass(e.target.value)}
               >
                 {classes.map((classe: any) => (
                   <option key={classe.idClasse} value={classe.idClasse}>
