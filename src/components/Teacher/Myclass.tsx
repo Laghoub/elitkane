@@ -78,6 +78,7 @@ const Myclass = () => {
         <h1>Tableau de bord de l'enseignant</h1>
         <br />
         <h2>Mes étudiants</h2>
+        <br />
         <div className="row">
           <div className="col-md-4">
             <Form.Group controlId="selectedClass">
@@ -106,6 +107,7 @@ const Myclass = () => {
             </button>
           </div>
         </div>
+        <br />
         <div className="row">
           <div className="col-md-12">
             <table className="table">
@@ -122,7 +124,7 @@ const Myclass = () => {
                   <tr key={student.matricule}>
                     <td>{student.nom}</td>
                     <td>{student.prenom}</td>
-                    <td>{student.dateNaissance}</td>
+                    <td>{student.dateNaissance.substring(0, 10)}</td>
                     <td>{student.mail}</td>
                   </tr>
                 ))}
