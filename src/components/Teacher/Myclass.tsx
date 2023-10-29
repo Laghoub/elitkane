@@ -65,7 +65,7 @@ const Myclass = () => {
     // récupérez la liste des étudiants pour la classe sélectionnée
 
     axios
-      .get(`https://elitkane.onrender.com/api/student/class/${selectedClass}`)
+      .get(`https://elitkane.onrender.com/api/student/class/1AL1`)
       .then((response) => {
         setStudents(response.data.data);
       })
