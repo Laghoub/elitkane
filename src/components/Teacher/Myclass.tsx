@@ -40,7 +40,7 @@ const Myclass = () => {
     axios
       .get(`https://elitkane.onrender.com/api/student/class/${selectedClassId}`)
       .then((response) => {
-        setStudents(response.data);
+        setStudents(response.data.data);
       })
       .catch((error) => {
         console.error("Erreur de chargement des étudiants :", error);
@@ -56,7 +56,7 @@ const Myclass = () => {
         <Select value={selectedClass} onChange={handleClassChange}>
           {classes.map((classe: any) => (
             <MenuItem key={classe.idClasse} value={classe.idClasse}>
-              {classe.nomClasse}
+              {classe.idClasse}
             </MenuItem>
           ))}
         </Select>
