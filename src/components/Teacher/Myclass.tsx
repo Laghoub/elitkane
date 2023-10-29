@@ -65,9 +65,11 @@ const Myclass = () => {
     // récupérez la liste des étudiants pour la classe sélectionnée
 
     axios
-      .get(`https://elitkane.onrender.com/api/student/class/1AL1`)
+      .get(`https://elitkane.onrender.com/api/student/class/${selectedClass}`)
       .then((response) => {
         setStudents(response.data.data);
+        console.log("entrer");
+        console.log(response.data.data);
       })
       .catch((error) => {
         console.error("Erreur de chargement des étudiants :", error);
@@ -85,7 +87,7 @@ const Myclass = () => {
               <label>Choisir une classe</label>
               <select
                 className="form-control"
-                value="1AL1"
+                value={selectedClass}
                 onChange={handleClassChange}
               >
                 {classes.map((classe: any) => (
