@@ -44,8 +44,19 @@ const Login = () => {
         localStorage.setItem("matricule", data.data.matricule);
         localStorage.setItem("name", data.data.nom);
         localStorage.setItem("role", data.data.role);
+        if (data.data.role == "fondatrice") {
+          console.log("sucssess");
+          navigate("/");
+        } else {
+          if (data.data.role == "étudiant") {
+            navigate("/studenthome");
+          } else {
+            navigate("/teacherhome");
+          }
+        }
         //localStorage.setItem("token", data.token);
         //setToken(data.token);
+
         return true;
       } else {
         setErrorMessage(
@@ -70,16 +81,6 @@ const Login = () => {
   };
 
   if (loginSuccess) {
-    if (localStorage.getItem("role") == "fondatrice") {
-      console.log("sucssess");
-      navigate("/");
-    } else {
-      if (localStorage.getItem("role") == "étudiant") {
-        navigate("/studenthome");
-      } else {
-        navigate("/teacherhome");
-      }
-    }
   }
 
   const access = async (e: any) => {
