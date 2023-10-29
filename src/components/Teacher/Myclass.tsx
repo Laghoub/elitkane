@@ -85,17 +85,13 @@ const Myclass = () => {
           <div className="col-md-4">
             <div className="form-group">
               <label>Choisir une classe</label>
-              <select
+              <input
+                type="text"
                 className="form-control"
+                placeholder="Nom d'utilisateur"
                 value={selectedClass}
                 onChange={(e) => setSelectedClass(e.target.value)}
-              >
-                {classes.map((classe: any) => (
-                  <option key={classe.idClasse} value={classe.idClasse}>
-                    {classe.idClasse}
-                  </option>
-                ))}
-              </select>
+              />
             </div>
           </div>
           <div className="col-md-4">
