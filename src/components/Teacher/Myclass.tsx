@@ -11,6 +11,7 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import { Modal, Form, Button, Row, Col, Toast } from "react-bootstrap";
 
 const Myclass = () => {
   type ClassType = {
@@ -54,12 +55,6 @@ const Myclass = () => {
       });
   }, []);
 
-  const handleClassChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    const selectedClassId = event.target.value as string;
-    setSelectedClass(selectedClassId);
-    console.log("Classe sélectionnée :", selectedClassId);
-  };
-
   const handleValider = () => {
     // Lorsque l'enseignant clique sur le bouton "Valider",
     // récupérez la liste des étudiants pour la classe sélectionnée
@@ -83,16 +78,24 @@ const Myclass = () => {
         <h1>Tableau de bord de l'enseignant</h1>
         <div className="row">
           <div className="col-md-4">
-            <div className="form-group">
-              <label>Choisir une classe</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Nom d'utilisateur"
+            <Form.Group controlId="selectedClass">
+              <Form.Control
+                as="select"
+                name="selectedClass"
                 value={selectedClass}
                 onChange={(e) => setSelectedClass(e.target.value)}
-              />
-            </div>
+                required
+              >
+                <option value="" disabled>
+                  Classe
+                </option>
+                {classes.map((classe) => (
+                  <option key={classe.idClasse} value={classe.idClasse}>
+                    {classe.idClasse}
+                  </option>
+                ))}
+              </Form.Control>
+            </Form.Group>
           </div>
           <div className="col-md-4">
             <button className="btn btn-primary" onClick={handleValider}>
