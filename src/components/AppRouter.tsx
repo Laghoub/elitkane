@@ -14,6 +14,7 @@ import ParentRegistration from "./ParentRegistration";
 import Cookies from "js-cookie";
 import TeacherHomePage from "./Teacher/TeacherHomePage";
 import StudentHomePage from "./Student/StudentHomePage";
+import Myclass from "./Teacher/Myclass";
 
 const AppRouter: React.FC = () => {
   const tokenLogin = Cookies.get("token");
@@ -45,6 +46,17 @@ const AppRouter: React.FC = () => {
           element={
             tokenLogin && role === "enseignant" ? (
               <TeacherHomePage />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+
+        <Route
+          path="/classteacher"
+          element={
+            tokenLogin && role === "enseignant" ? (
+              <Myclass />
             ) : (
               <Navigate to="/login" />
             )

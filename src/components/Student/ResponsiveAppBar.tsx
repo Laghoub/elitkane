@@ -15,14 +15,7 @@ import AdbIcon from "@mui/icons-material/Adb";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
-const pages = [
-  "Accueil",
-  "Emploi du temps",
-  "Liste des étudiants",
-  "Notes",
-  "Absences",
-  "Remarques",
-];
+const pages = ["Accueil", "Emploi du temps", "Notes", "Absences", "Remarques"];
 const settings = ["Mon compte", "Déconnecter"];
 
 function ResponsiveAppBar() {
@@ -58,9 +51,6 @@ function ResponsiveAppBar() {
     switch (page) {
       case "Emploi du temps":
         navigate("/underdev");
-        break;
-      case "Liste des étudiants":
-        navigate("/classteacher");
         break;
       case "Notes":
         navigate("/underdev");

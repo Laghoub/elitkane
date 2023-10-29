@@ -4,7 +4,7 @@ import InfoStudent from "./infoStudent";
 import Typography from "@mui/material/Typography";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-import ResponsiveAppBar from "../Teacher/ResponsiveAppBar";
+import ResponsiveAppBar from "../Student/ResponsiveAppBar";
 
 const StudentHomePage = () => {
   const navigate = useNavigate();
