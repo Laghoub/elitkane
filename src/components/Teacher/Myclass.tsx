@@ -37,6 +37,8 @@ const Myclass = () => {
     setSelectedClass(selectedClassId);
 
     // Récupérez la liste des étudiants pour la classe sélectionnée
+    {
+      /*
     axios
       .get(`https://elitkane.onrender.com/api/student/class/${selectedClassId}`)
       .then((response) => {
@@ -45,6 +47,9 @@ const Myclass = () => {
       .catch((error) => {
         console.error("Erreur de chargement des étudiants :", error);
       });
+
+    */
+    }
   };
 
   return (
@@ -61,6 +66,7 @@ const Myclass = () => {
           ))}
         </Select>
       </FormControl>
+      {/*
       <TableContainer>
         <Table>
           <TableHead>
@@ -83,6 +89,7 @@ const Myclass = () => {
           </TableBody>
         </Table>
       </TableContainer>
+            */}
     </div>
   );
 };
