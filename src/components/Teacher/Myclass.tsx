@@ -54,7 +54,7 @@ const Myclass = () => {
       });
   }, []);
 
-  const handleClassChange = (event: any) => {
+  const handleClassChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     const selectedClassId = event.target.value as string;
     setSelectedClass(selectedClassId);
     console.log("Classe sélectionnée :", selectedClassId);
