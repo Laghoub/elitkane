@@ -106,11 +106,11 @@ const Myclass = () => {
               </thead>
               <tbody>
                 {students.map((student: any) => (
-                  <tr key={student.id}>
+                  <tr key={student.matricule}>
                     <td>{student.nom}</td>
                     <td>{student.prenom}</td>
                     <td>{student.dateNaissance}</td>
-                    <td>{student.email}</td>
+                    <td>{student.mail}</td>
                   </tr>
                 ))}
               </tbody>
