@@ -52,25 +52,26 @@ const Myclass = () => {
       .catch((error) => {
         console.error("Erreur de chargement des classes :", error);
       });
-
-    axios
-      .get(`https://elitkane.onrender.com/api/student/class/4AM1`)
-      .then((response) => {
-        setStudents(response.data.data);
-        console.log(students);
-      })
-
-      .catch((error) => {
-        console.error("Erreur de chargement des étudiants :", error);
-      });
   }, []);
 
   const handleClassChange = (event: any) => {
     const selectedClassId = event.target.value as string;
     setSelectedClass(selectedClassId);
     console.log("Classe sélectionnée :", selectedClassId);
+  };
 
-    // Récupérez la liste des étudiants pour la classe sélectionnée
+  const handleValider = () => {
+    // Lorsque l'enseignant clique sur le bouton "Valider",
+    // récupérez la liste des étudiants pour la classe sélectionnée
+
+    axios
+      .get(`https://elitkane.onrender.com/api/student/class/${selectedClass}`)
+      .then((response) => {
+        setStudents(response.data.data);
+      })
+      .catch((error) => {
+        console.error("Erreur de chargement des étudiants :", error);
+      });
   };
 
   return (
@@ -94,6 +95,11 @@ const Myclass = () => {
                 ))}
               </select>
             </div>
+          </div>
+          <div className="col-md-4">
+            <button className="btn btn-primary" onClick={handleValider}>
+              Valider
+            </button>
           </div>
         </div>
         <div className="row">
