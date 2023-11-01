@@ -60,7 +60,7 @@ const Login = () => {
         return true;
       } else {
         setErrorMessage(
-          "Vous avez effectué l'inscription, mais votre compte n'a pas encore été validé. Vous pourrez accéder à votre compte à partir du 23 octobre."
+          "Votre compte a été validé, mais vos informations de connexion sont incorrectes !"
         );
       }
     } catch (error) {
