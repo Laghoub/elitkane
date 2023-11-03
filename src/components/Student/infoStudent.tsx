@@ -3,6 +3,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
+import Login from "../Login";
 
 const InfoStudent = () => {
   type InfoType = {
@@ -18,6 +19,8 @@ const InfoStudent = () => {
 
   const [studentList, setStudentList] = useState([] as InfoType[]);
   const [loading, setLoading] = useState(true);
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
 
   const fetchStudentList = async (matricule: string) => {
     try {
@@ -41,60 +44,64 @@ const InfoStudent = () => {
     fetchStudentList(matriculeValue);
   }, []);
 
-  return (
-    <div className="container mt-5">
-      {loading ? (
-        <Typography variant="body2" color="text.secondary">
-          Chargement en cours...
-        </Typography>
-      ) : (
-        studentList.map((student, index) => (
-          <Card key={index} className="mb-2">
-            <CardContent>
-              {/* Informations personnelles */}
-              <Typography variant="h4" component="div">
-                <span style={{ color: "black" }}>
-                  Informations personnelles
-                </span>
-              </Typography>
-              <br />
-              <Typography variant="h6" component="div">
-                <span style={{ color: "black" }}>Matricule:</span>{" "}
-                <span style={{ color: "#2076d3" }}>{student.matricule}</span>
-              </Typography>
-              <Typography variant="h6" component="div">
-                <span style={{ color: "black" }}>Nom:</span>{" "}
-                <span style={{ color: "#2076d3" }}>{student.nom}</span>
-              </Typography>
-              <Typography variant="h6" component="div">
-                <span style={{ color: "black" }}>Prénom:</span>{" "}
-                <span style={{ color: "#2076d3" }}>{student.prenom}</span>
-              </Typography>
-              <Typography variant="h6" component="div">
-                <span style={{ color: "black" }}>
-                  Date et lieu de naissance:
-                </span>{" "}
-                <span style={{ color: "#2076d3" }}>
-                  {student.dateNaissance + " à " + student.lieuNaissance}
-                </span>
-              </Typography>
-              <Typography variant="h6" component="div">
-                <span style={{ color: "black" }}>classe</span>{" "}
-                <span style={{ color: "#2076d3" }}>
-                  {student.classe + " " + student.filiere}
-                </span>
-              </Typography>
-              <Typography variant="h6" component="div">
-                <span style={{ color: "black" }}>Email:</span>{" "}
-                <span style={{ color: "#2076d3" }}>{student.mail}</span>
-              </Typography>
-            </CardContent>
-          </Card>
-        ))
-      )}
-      {/* Carte pour la liste des classes */}
-    </div>
-  );
+  if (!token && role != "étudiant") {
+    return <Login />;
+  } else {
+    return (
+      <div className="container mt-5">
+        {loading ? (
+          <Typography variant="body2" color="text.secondary">
+            Chargement en cours...
+          </Typography>
+        ) : (
+          studentList.map((student, index) => (
+            <Card key={index} className="mb-2">
+              <CardContent>
+                {/* Informations personnelles */}
+                <Typography variant="h4" component="div">
+                  <span style={{ color: "black" }}>
+                    Informations personnelles
+                  </span>
+                </Typography>
+                <br />
+                <Typography variant="h6" component="div">
+                  <span style={{ color: "black" }}>Matricule:</span>{" "}
+                  <span style={{ color: "#2076d3" }}>{student.matricule}</span>
+                </Typography>
+                <Typography variant="h6" component="div">
+                  <span style={{ color: "black" }}>Nom:</span>{" "}
+                  <span style={{ color: "#2076d3" }}>{student.nom}</span>
+                </Typography>
+                <Typography variant="h6" component="div">
+                  <span style={{ color: "black" }}>Prénom:</span>{" "}
+                  <span style={{ color: "#2076d3" }}>{student.prenom}</span>
+                </Typography>
+                <Typography variant="h6" component="div">
+                  <span style={{ color: "black" }}>
+                    Date et lieu de naissance:
+                  </span>{" "}
+                  <span style={{ color: "#2076d3" }}>
+                    {student.dateNaissance + " à " + student.lieuNaissance}
+                  </span>
+                </Typography>
+                <Typography variant="h6" component="div">
+                  <span style={{ color: "black" }}>classe</span>{" "}
+                  <span style={{ color: "#2076d3" }}>
+                    {student.classe + " " + student.filiere}
+                  </span>
+                </Typography>
+                <Typography variant="h6" component="div">
+                  <span style={{ color: "black" }}>Email:</span>{" "}
+                  <span style={{ color: "#2076d3" }}>{student.mail}</span>
+                </Typography>
+              </CardContent>
+            </Card>
+          ))
+        )}
+        {/* Carte pour la liste des classes */}
+      </div>
+    );
+  }
 };
 
 export default InfoStudent;

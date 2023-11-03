@@ -45,7 +45,9 @@ function ResponsiveAppBar() {
     navigate("/login");
   };
 
-  const handleCloseUserMenu = () => {};
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
 
   const handleNavigation = (page: string) => {
     switch (page) {
@@ -180,7 +182,17 @@ function ResponsiveAppBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem
+                  key={setting}
+                  onClick={() => {
+                    if (setting === "Mon compte") {
+                      console.log("compte"); // Redirigez vers la page de gestion du compte
+                    } else if (setting === "Déconnecter") {
+                      handleLogout(); // Déconnectez l'utilisateur
+                    }
+                    handleCloseUserMenu();
+                  }}
+                >
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
