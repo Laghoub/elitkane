@@ -125,11 +125,7 @@ const Login = () => {
             {/* Champs de saisie */}
             <h2 style={{ color: "white" }}>Se connecter</h2>
             <br />
-            <p style={{ color: "white" }}>
-              Pour des raisons de sécurité, saisissez vos informations de
-              connexion, puis actualisez la page, réinsérez vos informations et
-              connectez-vous !
-            </p>
+
             {errorMessage && (
               <div className="alert alert-danger">{errorMessage}</div>
             )}
