@@ -35,7 +35,7 @@ const InfoTeacher = () => {
 
       if (response.data.success === 1) {
         setTeacherList(response.data.data);
-        localStorage.setItem("matiere", response.data.data.matiere);
+        localStorage.setItem("matiere", response.data.data.matiereEnseignee);
       }
       setLoading(false);
     } catch (error) {
