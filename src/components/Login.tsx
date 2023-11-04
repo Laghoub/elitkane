@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import Cookies from "js-cookie";
 import axios from "axios";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -13,6 +15,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const [token, setToken] = useState("");
   const date = new Date();
   const [accessData, setAccessData] = useState({
@@ -20,6 +23,7 @@ const Login = () => {
   });
 
   const handleLogin = async () => {
+    setLoading(true);
     try {
       const response = await fetch(
         "https://elitkane.onrender.com/api/users/login",
@@ -59,6 +63,7 @@ const Login = () => {
 
         return true;
       } else {
+        setLoading(false);
         setErrorMessage(
           "Votre compte a été validé, mais vos informations de connexion sont incorrectes !"
         );
@@ -157,6 +162,23 @@ const Login = () => {
               >
                 Se connecter
               </button>
+              <Modal
+                show={loading}
+                onHide={() => setLoading(false)}
+                backdrop="static"
+              >
+                <Modal.Header closeButton>
+                  <Modal.Title>Merci de patienter...</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  Le processus de connexion est en cours. Veuillez patienter.
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={() => setLoading(false)}>
+                    Annuler
+                  </Button>
+                </Modal.Footer>
+              </Modal>
             </div>
             <br />
             <p style={{ color: "white" }}>
