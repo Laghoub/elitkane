@@ -55,7 +55,7 @@ function ResponsiveAppBar() {
         navigate("/underdev");
         break;
       case "Notes":
-        navigate("/underdev");
+        navigate("/getnotes");
         break;
       case "Absences":
         navigate("/underdev");
