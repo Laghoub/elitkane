@@ -78,25 +78,28 @@ const Notes = () => {
   };
 
   const handleNoter = (
-    matricule: string,
-    note: string,
-    observation: string
+    matriculeE: string,
+    noteE: string,
+    observationE: string
   ) => {
     // Effectuer la requête POST vers l'API avec les détails de la note
     const mark = {
-      matricule,
-      nomEns: localStorage.getItem("nom"),
+      matricule: matriculeE,
+      nomEns: localStorage.getItem("name"),
       matiere: "Mathématiques",
       trimestre: selectedTrimestre,
       devoir: selectedDevoir,
-      note: "&é",
-      observation: "AZ",
+      note: noteE,
+      observation: observationE,
     };
 
     axios
       .post("https://elitkane.onrender.com/api/note", mark)
       .then((response) => {
-        console.log("success");
+        console.log("Succès");
+      })
+      .catch((error) => {
+        console.error("Erreur de requête POST :", error);
       });
   };
 
