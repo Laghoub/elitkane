@@ -35,6 +35,8 @@ const Notes = () => {
   const [students, setStudents] = useState([] as studentType[]);
   const [note, setNote] = useState("");
   const [observation, setObservation] = useState("");
+  const [buttonClicked, setButtonClicked] = useState(false);
+  const [buttonText, setButtonText] = useState("Rendre la note");
   const matricule = localStorage.getItem("matricule");
 
   useEffect(() => {
@@ -97,6 +99,8 @@ const Notes = () => {
       .post("https://elitkane.onrender.com/api/note", mark)
       .then((response) => {
         console.log("Succès");
+        setButtonText("Note attribuée");
+        setButtonClicked(true);
       })
       .catch((error) => {
         console.error("Erreur de requête POST :", error);
@@ -191,12 +195,13 @@ const Notes = () => {
                 </td>
                 <td>
                   <Button
-                    variant="primary"
+                    variant={buttonClicked ? "success" : "primary"}
                     onClick={() =>
                       handleNoter(student.matricule, note, observation)
                     }
+                    disabled={buttonClicked}
                   >
-                    Rendre la note
+                    {buttonText}
                   </Button>
                 </td>
               </tr>
