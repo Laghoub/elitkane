@@ -182,6 +182,11 @@ const Notes = () => {
           </Button>
         </Form>
         <br />
+        <p style={{ color: "red" }}>
+          Les deux champs: note et observation sont obligatoires, dans le cas
+          contraire, l'étudiant ne recevra pas sa note.
+        </p>
+        <br />
         <table className="table">
           <thead>
             <tr>
