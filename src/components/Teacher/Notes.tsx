@@ -107,7 +107,7 @@ const Notes = () => {
     const mark = {
       matricule: student.matricule,
       nomEns: localStorage.getItem("name"),
-      matiere: "Mathématiques",
+      matiere: localStorage.getItem("matiere"),
       trimestre: selectedTrimestre,
       devoir: selectedDevoir,
       note: notes[index].note,
