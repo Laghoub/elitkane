@@ -35,12 +35,7 @@ const Notes = () => {
   const [students, setStudents] = useState([] as studentType[]);
   const [note, setNote] = useState("");
   const [observation, setObservation] = useState("");
-  const [buttonClicked, setButtonClicked] = useState(
-    Array(students.length).fill(false)
-  );
-  const [buttonText, setButtonText] = useState(
-    Array(students.length).fill("Rendre la note")
-  );
+
   const matricule = localStorage.getItem("matricule");
 
   useEffect(() => {
@@ -86,14 +81,13 @@ const Notes = () => {
   const handleNoter = (
     matriculeE: string,
     noteE: string,
-    observationE: string,
-    index: number
+    observationE: string
   ) => {
     // Effectuer la requête POST vers l'API avec les détails de la note
     const mark = {
       matricule: matriculeE,
       nomEns: localStorage.getItem("name"),
-      matiere: localStorage.getItem("matiere"),
+      matiere: "Mathématiques",
       trimestre: selectedTrimestre,
       devoir: selectedDevoir,
       note: noteE,
@@ -104,14 +98,6 @@ const Notes = () => {
       .post("https://elitkane.onrender.com/api/note", mark)
       .then((response) => {
         console.log("Succès");
-        setButtonText((prevButtonText) =>
-          prevButtonText.map((text, i) =>
-            i === index ? "Note attribuée" : text
-          )
-        );
-        setButtonClicked((prevButtonClicked) =>
-          prevButtonClicked.map((clicked, i) => (i === index ? true : clicked))
-        );
       })
       .catch((error) => {
         console.error("Erreur de requête POST :", error);
@@ -185,7 +171,7 @@ const Notes = () => {
             </tr>
           </thead>
           <tbody>
-            {students.map((student, index) => (
+            {students.map((student) => (
               <tr key={student.matricule}>
                 <td>{student.matricule}</td>
                 <td>{student.nom}</td>
@@ -206,13 +192,12 @@ const Notes = () => {
                 </td>
                 <td>
                   <Button
-                    variant={buttonClicked[index] ? "success" : "primary"}
+                    variant="primary"
                     onClick={() =>
-                      handleNoter(student.matricule, note, observation, index)
+                      handleNoter(student.matricule, note, observation)
                     }
-                    disabled={buttonClicked[index]}
                   >
-                    {buttonText[index]}
+                    Rendre la note
                   </Button>
                 </td>
               </tr>
