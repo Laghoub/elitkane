@@ -89,8 +89,8 @@ const Notes = () => {
       matiere: "Mathématiques",
       trimestre: selectedTrimestre,
       devoir: selectedDevoir,
-      note,
-      observation,
+      note: "&é",
+      observation: "AZ",
     };
 
     axios
