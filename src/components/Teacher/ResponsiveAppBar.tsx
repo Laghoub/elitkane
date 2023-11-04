@@ -65,7 +65,7 @@ function ResponsiveAppBar() {
         navigate("/classteacher");
         break;
       case "Notes":
-        navigate("/underdev");
+        navigate("/setnotes");
         break;
       case "Absences":
         navigate("/underdev");

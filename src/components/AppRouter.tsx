@@ -15,6 +15,7 @@ import Cookies from "js-cookie";
 import TeacherHomePage from "./Teacher/TeacherHomePage";
 import StudentHomePage from "./Student/StudentHomePage";
 import Myclass from "./Teacher/Myclass";
+import Notes from "./Teacher/Notes";
 
 const AppRouter: React.FC = () => {
   const tokenLogin = Cookies.get("token");
@@ -44,6 +45,7 @@ const AppRouter: React.FC = () => {
         <Route path="/classteacher" element={<Myclass />} />
         <Route path="/teacherhome" element={<TeacherHomePage />} />
         <Route path="/studenthome" element={<StudentHomePage />} />
+        <Route path="/setnotes" element={<Notes />} />
 
         <Route
           path="/class"
