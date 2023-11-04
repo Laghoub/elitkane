@@ -36,12 +36,13 @@ const Notes = () => {
   const [selectedTrimestre, setSelectedTrimestre] = useState("1");
   const [selectedDevoir, setSelectedDevoir] = useState("Devoir 1");
   const [students, setStudents] = useState([] as StudentType[]);
-  const [matricule, setMatricule] = useState("");
 
   // État pour le suivi des notes et boutons
   const [notes, setNotes] = useState(
     [] as { note: string; observation: string; isSubmitted: boolean }[]
   );
+
+  const matricule = localStorage.getItem("matricule");
 
   useEffect(() => {
     // Récupération de la liste des classes de l'enseignant à partir de l'API
@@ -67,10 +68,6 @@ const Notes = () => {
 
   const handleDevoirChange = (e: any) => {
     setSelectedDevoir(e.target.value);
-  };
-
-  const handleMatriculeChange = (e: any) => {
-    setMatricule(e.target.value);
   };
 
   const handleFetchStudents = () => {
@@ -140,14 +137,6 @@ const Notes = () => {
         <h1>Page de Saisie des Notes</h1>
         <br />
         <Form>
-          <Form.Group controlId="matricule">
-            <Form.Label>Matricule de l'enseignant</Form.Label>
-            <Form.Control
-              type="text"
-              value={matricule}
-              onChange={handleMatriculeChange}
-            />
-          </Form.Group>
           <Form.Group controlId="selectedClass">
             <Form.Label>Classe</Form.Label>
             <Form.Control
