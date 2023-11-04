@@ -33,7 +33,7 @@ const Notes = () => {
   const [selectedTrimestre, setSelectedTrimestre] = useState("1");
   const [selectedDevoir, setSelectedDevoir] = useState("Devoir 1");
   const [students, setStudents] = useState([] as studentType[]);
-  const [mark, setMark] = useState("");
+  const [note, setNote] = useState("");
   const [observation, setObservation] = useState("");
   const matricule = localStorage.getItem("matricule");
 
@@ -79,22 +79,22 @@ const Notes = () => {
 
   const handleNoter = (
     matricule: string,
-    mark: string,
+    note: string,
     observation: string
   ) => {
     // Effectuer la requête POST vers l'API avec les détails de la note
-    const note = {
+    const mark = {
       matricule,
       nomEns: localStorage.getItem("nom"),
       matiere: "Mathématiques",
       trimestre: selectedTrimestre,
       devoir: selectedDevoir,
-      mark,
+      note,
       observation,
     };
 
     axios
-      .post("https://elitkane.onrender.com/api/note", note)
+      .post("https://elitkane.onrender.com/api/note", mark)
       .then((response) => {
         console.log("success");
       });
@@ -176,7 +176,7 @@ const Notes = () => {
                   <Form.Control
                     type="number"
                     value={student.note}
-                    onChange={(e) => setMark(e.target.value)}
+                    onChange={(e) => setNote(e.target.value)}
                   />
                 </td>
                 <td>
@@ -190,7 +190,7 @@ const Notes = () => {
                   <Button
                     variant="primary"
                     onClick={() =>
-                      handleNoter(student.matricule, mark, observation)
+                      handleNoter(student.matricule, note, observation)
                     }
                   >
                     Rendre la note
