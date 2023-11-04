@@ -93,9 +93,11 @@ const Notes = () => {
       observation,
     };
 
-    axios.post("http://localhost:3000/api/note", note).then((response) => {
-      // Gérer la réponse de la requête
-    });
+    axios
+      .post("https://elitkane.onrender.com/api/note", note)
+      .then((response) => {
+        console.log("success");
+      });
   };
 
   return (
