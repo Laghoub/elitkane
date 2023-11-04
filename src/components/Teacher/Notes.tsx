@@ -33,9 +33,9 @@ const Notes = () => {
   const [selectedTrimestre, setSelectedTrimestre] = useState("1");
   const [selectedDevoir, setSelectedDevoir] = useState("Devoir 1");
   const [students, setStudents] = useState([] as studentType[]);
-  const [note, setNote] = useState("");
-  const [observation, setObservation] = useState("");
-
+  const [notes, setNotes] = useState(
+    [] as { note: string; observation: string }[]
+  );
   const matricule = localStorage.getItem("matricule");
 
   useEffect(() => {
@@ -63,6 +63,27 @@ const Notes = () => {
   const handleDevoirChange = (e: any) => {
     setSelectedDevoir(e.target.value);
   };
+  const handleNoteChange = (matricule: any, note: string) => {
+    // Mettre à jour la note pour l'étudiant avec le matricule donné
+    setNotes((prevNotes) => ({
+      ...prevNotes,
+      [matricule]: {
+        ...prevNotes[matricule],
+        note: note,
+      },
+    }));
+  };
+
+  const handleObservationChange = (matricule: any, observation: string) => {
+    // Mettre à jour l'observation pour l'étudiant avec le matricule donné
+    setNotes((prevNotes) => ({
+      ...prevNotes,
+      [matricule]: {
+        ...prevNotes[matricule],
+        observation: observation,
+      },
+    }));
+  };
 
   const handleFetchStudents = () => {
     // Récupérer la liste des étudiants pour la classe sélectionnée depuis l'API
@@ -70,34 +91,34 @@ const Notes = () => {
       .get(`https://elitkane.onrender.com/api/student/class/${selectedClass}`)
       .then((response) => {
         setStudents(response.data.data);
-        console.log("entrer");
-        console.log(response.data.data);
+        // Initialiser les notes et observations avec des tableaux vides pour chaque étudiant
+        setNotes(response.data.data.map(() => ({ note: "", observation: "" })));
       })
       .catch((error) => {
         console.error("Erreur de chargement des étudiants :", error);
       });
   };
 
-  const handleNoter = (
-    matriculeE: string,
-    noteE: string,
-    observationE: string
-  ) => {
+  const handleNoter = (index: number) => {
     // Effectuer la requête POST vers l'API avec les détails de la note
-    const mark = {
-      matricule: matriculeE,
+    const student = students[index];
+    const noteData = {
+      matricule: student.matricule,
       nomEns: localStorage.getItem("name"),
       matiere: "Mathématiques",
       trimestre: selectedTrimestre,
       devoir: selectedDevoir,
-      note: noteE,
-      observation: observationE,
+      note: notes[index].note,
+      observation: notes[index].observation,
     };
 
     axios
-      .post("https://elitkane.onrender.com/api/note", mark)
+      .post("https://elitkane.onrender.com/api/note", noteData)
       .then((response) => {
-        console.log("Succès");
+        // Mettre à jour le tableau de notes pour marquer que la note a été attribuée
+        const updatedNotes = [...notes];
+        updatedNotes[index] = { note: "Attribuée", observation: "" };
+        setNotes(updatedNotes);
       })
       .catch((error) => {
         console.error("Erreur de requête POST :", error);
@@ -171,7 +192,7 @@ const Notes = () => {
             </tr>
           </thead>
           <tbody>
-            {students.map((student) => (
+            {students.map((student, index) => (
               <tr key={student.matricule}>
                 <td>{student.matricule}</td>
                 <td>{student.nom}</td>
@@ -179,25 +200,30 @@ const Notes = () => {
                 <td>
                   <Form.Control
                     type="number"
-                    value={student.note}
-                    onChange={(e) => setNote(e.target.value)}
+                    value={notes[index].note}
+                    onChange={(e) => handleNoteChange(index, e.target.value)}
                   />
                 </td>
                 <td>
                   <Form.Control
                     type="text"
-                    value={student.observation}
-                    onChange={(e) => setObservation(e.target.value)}
+                    value={notes[index].observation}
+                    onChange={(e) =>
+                      handleObservationChange(index, e.target.value)
+                    }
                   />
                 </td>
                 <td>
                   <Button
-                    variant="primary"
-                    onClick={() =>
-                      handleNoter(student.matricule, note, observation)
+                    variant={
+                      notes[index].note === "Attribuée" ? "success" : "primary"
                     }
+                    onClick={() => handleNoter(index)}
+                    disabled={notes[index].note === "Attribuée"}
                   >
-                    Rendre la note
+                    {notes[index].note === "Attribuée"
+                      ? "Note attribuée"
+                      : "Rendre la note"}
                   </Button>
                 </td>
               </tr>
