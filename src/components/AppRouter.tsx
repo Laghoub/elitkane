@@ -32,11 +32,14 @@ const AppRouter: React.FC = () => {
           element={
             tokenLogin ? (
               role === "fondatrice" ? (
-                <HomePage />
-              ) : role === "étudiant" ? (
-                <StudentHomePage />
+                <AppDown />
+              ) : //<HomePage />
+              role === "étudiant" ? (
+                <AppDown />
               ) : (
-                <TeacherHomePage />
+                //<StudentHomePage />
+                <AppDown />
+                //<TeacherHomePage />
               )
             ) : (
               <Navigate to="/login" />
