@@ -17,6 +17,7 @@ import StudentHomePage from "./Student/StudentHomePage";
 import Myclass from "./Teacher/Myclass";
 import Notes from "./Teacher/Notes";
 import StudentNotes from "./Student/StudentNotes";
+import AppDown from "./AppDown";
 
 const AppRouter: React.FC = () => {
   const tokenLogin = Cookies.get("token");
@@ -25,7 +26,7 @@ const AppRouter: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<AppDown />} />
         <Route
           path="/"
           element={

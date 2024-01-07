@@ -48,9 +48,9 @@ const StudentNotes = () => {
               <Card.Text>
                 Trimestre: {note.trimestre}
                 <br />
-                Devoir: {note.devoir}
+                {note.devoir}
                 <br />
-                Note: {note.note}
+                Note: {note.note} + " /20"
                 <br />
                 Observation: {note.observation}
               </Card.Text>
