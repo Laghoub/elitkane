@@ -65,7 +65,7 @@ const Login = () => {
       } else {
         setLoading(false);
         setErrorMessage(
-          "Votre compte a été validé, mais vos informations de connexion sont incorrectes !"
+          "Les informations de connexion sont incorrectes ou votre compte n'est pas encore validé !"
         );
       }
     } catch (error) {
