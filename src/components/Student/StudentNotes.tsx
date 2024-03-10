@@ -50,7 +50,7 @@ const StudentNotes = () => {
                 <br />
                 {note.devoir}
                 <br />
-                Note: {note.note} + " /20"
+                Note: {note.note} /20
                 <br />
                 Observation: {note.observation}
               </Card.Text>
