@@ -171,6 +171,7 @@ const Notes = () => {
               value={selectedDevoir}
               onChange={handleDevoirChange}
             >
+              <option value="Contrôle continu">Contrôle continu</option>
               <option value="Devoir 1">Devoir 1</option>
               <option value="Devoir 2">Devoir 2</option>
               <option value="Examen">Examen</option>
