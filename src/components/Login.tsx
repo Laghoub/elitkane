@@ -117,8 +117,20 @@ const Login = () => {
           <div className="col-md-4 login-form-1">
             {/* Logo */}
             <center>
-              <img src={logo} alt="Logo" className="logo" />
-              <img src={itkan} alt="Logo" className="logo" />
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <img
+                  src={logo}
+                  alt="Logo"
+                  className="logo"
+                  style={{ width: "50px", marginRight: "10px" }}
+                />
+                <img
+                  src={itkan}
+                  alt="Logo"
+                  className="logo"
+                  style={{ width: "50px" }}
+                />
+              </div>
             </center>
             <b>
               <p style={{ color: "white" }}>
