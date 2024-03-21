@@ -122,13 +122,13 @@ const Login = () => {
                   src={logo}
                   alt="Logo"
                   className="logo"
-                  style={{ width: "50px", marginRight: "10px" }}
+                  style={{ width: "200px", marginRight: "10px" }}
                 />
                 <img
                   src={itkan}
                   alt="Logo"
                   className="logo"
-                  style={{ width: "50px" }}
+                  style={{ width: "200px" }}
                 />
               </div>
             </center>
