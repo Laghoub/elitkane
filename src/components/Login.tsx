@@ -4,6 +4,7 @@ import Alert from "./HomePage";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
+import itkan from "../assets/logo itkan.png";
 import Cookies from "js-cookie";
 import axios from "axios";
 import Modal from "react-bootstrap/Modal";
@@ -117,6 +118,7 @@ const Login = () => {
             {/* Logo */}
             <center>
               <img src={logo} alt="Logo" className="logo" />
+              <img src={itkan} alt="Logo" className="logo" />
             </center>
             <b>
               <p style={{ color: "white" }}>
