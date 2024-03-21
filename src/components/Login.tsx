@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Alert from "./HomePage";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo1.png";
 import itkan from "../assets/logo itkan.png";
 import Cookies from "js-cookie";
 import axios from "axios";
@@ -109,7 +109,7 @@ const Login = () => {
 
   return (
     <div>
-      <div className="container" style={{ background: "#022634" }}>
+      <div className="container" style={{ background: "white" }}>
         <div
           className="row justify-content-center align-items-center login-container"
           style={{ marginTop: "100px", padding: "40px" }}
@@ -133,7 +133,7 @@ const Login = () => {
               </div>
             </center>
             <b>
-              <p style={{ color: "white" }}>
+              <p style={{ color: "#022634" }}>
                 Plateforme web développée par: LAGHOUB Nassim
                 <p>elitkane.web@gmail.com | Tous droits réservés</p>
               </p>
@@ -142,7 +142,7 @@ const Login = () => {
 
           <div className="col-md-4 login-form-2">
             {/* Champs de saisie */}
-            <h2 style={{ color: "white" }}>Se connecter</h2>
+            <h2 style={{ color: "#022634" }}>Se connecter</h2>
             <br />
 
             {errorMessage && (
@@ -195,18 +195,18 @@ const Login = () => {
               </Modal>
             </div>
             <br />
-            <p style={{ color: "white" }}>
+            <p style={{ color: "#022634" }}>
               Vous n'avez pas encore un compte ? inscrivez-vous.
             </p>
-            <Link to="/teacherRegistration" style={{ color: "white" }}>
+            <Link to="/teacherRegistration" style={{ color: "#022634" }}>
               Inscription enseignant
             </Link>
             <br />
-            <Link to="/studentRegistration" style={{ color: "white" }}>
+            <Link to="/studentRegistration" style={{ color: "#022634" }}>
               Inscription étudiant
             </Link>
             <br />
-            <Link to="/parentRegistration" style={{ color: "white" }}>
+            <Link to="/parentRegistration" style={{ color: "#022634" }}>
               Inscription parent
             </Link>
           </div>
