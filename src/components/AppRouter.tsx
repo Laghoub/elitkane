@@ -31,7 +31,7 @@ const AppRouter: React.FC = () => {
           path="/"
           element={
             tokenLogin ? (
-              role === "fondatrice" ? (
+              role === "Fondateur" ? (
                 <HomePage />
               ) : role === "étudiant" ? (
                 <StudentHomePage />
