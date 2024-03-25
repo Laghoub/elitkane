@@ -49,7 +49,7 @@ const Login = () => {
         localStorage.setItem("matricule", data.data.matricule);
         localStorage.setItem("name", data.data.nom);
         localStorage.setItem("role", data.data.role);
-        if (data.data.role == "fondatrice") {
+        if (data.data.role == "Fondateur") {
           console.log("sucssess");
           navigate("/");
         } else {
