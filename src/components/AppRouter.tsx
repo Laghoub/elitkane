@@ -55,17 +55,13 @@ const AppRouter: React.FC = () => {
         <Route
           path="/class"
           element={
-            tokenLogin && role === "fondatrice" ? (
-              <Class />
-            ) : (
-              <Navigate to="/" />
-            )
+            tokenLogin && role === "Fondateur" ? <Class /> : <Navigate to="/" />
           }
         />
         <Route
           path="/student"
           element={
-            tokenLogin && role === "fondatrice" ? (
+            tokenLogin && role === "Fondateur" ? (
               <Student />
             ) : (
               <Navigate to="/" />
@@ -75,7 +71,7 @@ const AppRouter: React.FC = () => {
         <Route
           path="/teacher"
           element={
-            tokenLogin && role === "fondatrice" ? (
+            tokenLogin && role === "Fondateur" ? (
               <Teacher />
             ) : (
               <Navigate to="/" />
