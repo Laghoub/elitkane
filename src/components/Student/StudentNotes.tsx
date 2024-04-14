@@ -19,6 +19,7 @@ const StudentNotes = () => {
     [] as NoteType[]
   );
   const [selectedTrimestre, setSelectedTrimestre] = useState("");
+  const [selectedMatiere, setSelectedMatiere] = useState("");
 
   const matricule = localStorage.getItem("matricule");
 
@@ -39,21 +40,32 @@ const StudentNotes = () => {
   }, [matricule]);
 
   useEffect(() => {
-    // Filtrer les notes lorsque le trimestre sélectionné change
-    if (selectedTrimestre === "") {
-      // Si "Tous les trimestres" sont sélectionnés, affichez toutes les notes
-      setFilteredStudentNotes(allStudentNotes);
-    } else {
-      // Sinon, filtrez les notes par trimestre sélectionné
-      const filteredNotes = allStudentNotes.filter(
-        (note) => note.trimestre === selectedTrimestre
-      );
-      setFilteredStudentNotes(filteredNotes);
-    }
-  }, [selectedTrimestre, allStudentNotes]);
+    // Filtrer les notes lorsque le trimestre ou la matière sélectionnée change
+    const filteredByTrimestre =
+      selectedTrimestre === ""
+        ? allStudentNotes
+        : allStudentNotes.filter(
+            (note) => note.trimestre === selectedTrimestre
+          );
 
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const filteredByMatiere =
+      selectedMatiere === ""
+        ? filteredByTrimestre
+        : filteredByTrimestre.filter(
+            (note) => note.matiere === selectedMatiere
+          );
+
+    setFilteredStudentNotes(filteredByMatiere);
+  }, [selectedTrimestre, selectedMatiere, allStudentNotes]);
+
+  const handleChangeTrimestre = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     setSelectedTrimestre(event.target.value);
+  };
+
+  const handleChangeMatiere = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedMatiere(event.target.value);
   };
 
   return (
@@ -64,16 +76,50 @@ const StudentNotes = () => {
         <h1>Consultation des Notes</h1>
         <br />
         <div className="mb-3">
+          <label htmlFor="filterTrimestre">Choisir le trimestre :</label>
           <select
             id="filterTrimestre"
             className="form-select"
             value={selectedTrimestre}
-            onChange={handleChange}
+            onChange={handleChangeTrimestre}
           >
             <option value="">Tous les trimestres</option>
             <option value="1">Trimestre 1</option>
             <option value="2">Trimestre 2</option>
             <option value="3">Trimestre 3</option>
+          </select>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="filterMatiere">Choisir la matière :</label>
+          <select
+            id="filterMatiere"
+            className="form-select"
+            value={selectedMatiere}
+            onChange={handleChangeMatiere}
+          >
+            <option value="">Toutes les matières</option>
+            <option value="Mathématiques">Mathématiques</option>
+            <option value="Langue Arabe">Langue Arabe</option>
+            <option value="Français">Français</option>
+            <option value="Anglais">Anglais</option>
+            <option value="Histoire-Géographie">Histoire-Géographie</option>
+            <option value="Physique-Chimie">Physique-Chimie</option>
+            <option value="Sciences de la Vie et de la Terre">
+              Sciences de la Vie et de la Terre
+            </option>
+            <option value="Comptabililé">Comptabililé</option>
+            <option value="Economie">Economie</option>
+            <option value="Droit">Droit</option>
+            <option value="Sciences islamique">Sciences islamique</option>
+            <option value="Education islamique">Education islamique</option>
+            <option value="Education civile">Education civile</option>
+            <option value="Philosophie">Philosophie</option>
+            <option value="Espagnol">Espagnol</option>
+            <option value="Éducation Physique et Sportive">
+              Éducation Physique et Sportive
+            </option>
+            <option value="Dessin">Dessin</option>
+            <option value="Informatique">Informatique</option>
           </select>
         </div>
         <br />
