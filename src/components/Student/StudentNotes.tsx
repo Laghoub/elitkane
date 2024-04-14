@@ -14,7 +14,10 @@ const StudentNotes = () => {
     observation: string;
   };
 
-  const [studentNotes, setStudentNotes] = useState([] as NoteType[]);
+  const [allStudentNotes, setAllStudentNotes] = useState([] as NoteType[]);
+  const [filteredStudentNotes, setFilteredStudentNotes] = useState(
+    [] as NoteType[]
+  );
   const [selectedTrimestre, setSelectedTrimestre] = useState("");
 
   const matricule = localStorage.getItem("matricule");
@@ -24,7 +27,8 @@ const StudentNotes = () => {
     axios
       .get(`https://elitkane.onrender.com/api/note/${matricule}`)
       .then((response) => {
-        setStudentNotes(response.data.data);
+        setAllStudentNotes(response.data.data);
+        setFilteredStudentNotes(response.data.data); // Initialisez les notes filtrées avec toutes les notes
       })
       .catch((error) => {
         console.error(
@@ -34,16 +38,22 @@ const StudentNotes = () => {
       });
   }, [matricule]);
 
-  const filterNotesByTrimestre = (trimestre: string) => {
-    const filteredNotes = studentNotes.filter(
-      (note) => !selectedTrimestre || note.trimestre === selectedTrimestre
-    );
-    setStudentNotes(filteredNotes);
-  };
+  useEffect(() => {
+    // Filtrer les notes lorsque le trimestre sélectionné change
+    if (selectedTrimestre === "") {
+      // Si "Tous les trimestres" sont sélectionnés, affichez toutes les notes
+      setFilteredStudentNotes(allStudentNotes);
+    } else {
+      // Sinon, filtrez les notes par trimestre sélectionné
+      const filteredNotes = allStudentNotes.filter(
+        (note) => note.trimestre === selectedTrimestre
+      );
+      setFilteredStudentNotes(filteredNotes);
+    }
+  }, [selectedTrimestre, allStudentNotes]);
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedTrimestre(event.target.value);
-    filterNotesByTrimestre(event.target.value);
   };
 
   return (
@@ -67,7 +77,7 @@ const StudentNotes = () => {
           </select>
         </div>
         <br />
-        {studentNotes.map((note, index) => (
+        {filteredStudentNotes.map((note, index) => (
           <Card key={index} className="mb-4">
             <Card.Body>
               <Card.Title>Matière: {note.matiere}</Card.Title>
