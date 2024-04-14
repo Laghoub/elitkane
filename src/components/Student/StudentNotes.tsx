@@ -13,7 +13,10 @@ const StudentNotes = () => {
     note: string;
     observation: string;
   };
+
   const [studentNotes, setStudentNotes] = useState([] as NoteType[]);
+  const [selectedTrimestre, setSelectedTrimestre] = useState("Tous");
+
   const matricule = localStorage.getItem("matricule");
 
   useEffect(() => {
@@ -31,12 +34,44 @@ const StudentNotes = () => {
       });
   }, [matricule]);
 
+  const filterNotesByTrimestre = (trimestre: string) => {
+    if (trimestre === "Tous") {
+      // Afficher toutes les notes
+      setStudentNotes(studentNotes);
+    } else {
+      // Filtrer les notes par trimestre sélectionné
+      const filteredNotes = studentNotes.filter(
+        (note) => note.trimestre === trimestre
+      );
+      setStudentNotes(filteredNotes);
+    }
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedTrimestre(event.target.value);
+    filterNotesByTrimestre(event.target.value);
+  };
+
   return (
     <div>
       <ResponsiveAppBar />
       <div className="container mt-4">
         <br />
         <h1>Consultation des Notes</h1>
+        <br />
+        <div>
+          <label htmlFor="trimestre">Choisir le trimestre :</label>
+          <select
+            id="trimestre"
+            value={selectedTrimestre}
+            onChange={handleChange}
+          >
+            <option value="Tous">Tous</option>
+            <option value="1">Trimestre 1</option>
+            <option value="2">Trimestre 2</option>
+            <option value="3">Trimestre 3</option>
+          </select>
+        </div>
         <br />
         {studentNotes.map((note, index) => (
           <Card key={index} className="mb-4">
